@@ -65,7 +65,12 @@ alter table emp2 modify email varchar2(20);
 --	Columns needs to be empty while changing to new datatype of column
 --	We can increase datatype size or derease upto maximum size of stored data in column
 
---drop contraints
+--drop constraints
+--To drop a primary key from a table
+-- First need to drop constraints from child tables
+-- then we can drop primary key from the parent table
+alter table child_table_name drop constraint constraint_fre_name;
+alter table parent_table_name drop primary key;
 
 
 -- add  FK's
