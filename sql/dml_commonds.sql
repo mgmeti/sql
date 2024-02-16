@@ -17,3 +17,8 @@ insert into cust(cno, ono, name) values(6, 5, 'arjun');
 
 --It will include null values for other columns.
 insert into cust(cno) values(8); 
+
+--NOTE:
+  set autocommit on;
+	set autocommit off;
+	commit;
