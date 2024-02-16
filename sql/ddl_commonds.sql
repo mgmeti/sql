@@ -74,3 +74,10 @@ alter table parent_table_name drop primary key;
 
 
 -- add  FK's
+-- Need to add column to the child table with column name and datatype,
+--alter table child_tab_name add col_name datatyp(size);
+alter table cust add ono number(5);
+
+--Need to make that new column as FK by referncing to the parent table
+--alter table child_tab_name add foreign key(new_col_name) references  	parent_tab_name(col_name);
+alter table cust add foreign key(ono) references ord(ono);
