@@ -18,6 +18,17 @@ insert into cust(cno, ono, name) values(6, 5, 'arjun');
 --It will include null values for other columns.
 insert into cust(cno) values(8); 
 
+--To insert multiple records at time in sqlplus
+--insert into table_name values(&col_name1, &col_name2);
+--ENTER the data per record, per column by using the enter button
+--For the next record use '/'.
+
+--TO copy data from another table 
+--insert into to_table_name(col_names) select col_names from from_table_name;
+insert into vpc(pid, pd) select prod_id, prod_desc from vp;
+
+
+
 --NOTE:
   set autocommit on;
 	set autocommit off;
