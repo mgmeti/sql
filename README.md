@@ -1,5 +1,5 @@
 # sql
-sql topic practice
+##sql topic practice
 
 1. DDL - Data Definition Language [CREATE, DROP, TRUNCATE, RENAME, ALTER]
 2. DML - Data Manipulation Language [INSERT, DELETE, UPDATE]
