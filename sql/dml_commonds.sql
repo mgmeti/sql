@@ -27,6 +27,20 @@ insert into cust(cno) values(8);
 --insert into to_table_name(col_names) select col_names from from_table_name;
 insert into vpc(pid, pd) select prod_id, prod_desc from vp;
 
+--UPDATE COMMAND
+--syntax: update t_name set col_name='new_value' where <condition>;
+update trainer set course='js' where id=10;
+
+--for multiple values for multiple columns
+update trainer set name='rajkumar', course='drama' where id=5;
+
+--TO update the whole column at a time
+update trainer set course='same_course';
+--To swap data from one column to another
+update trainer set course=name, name=course;
+--NOTE: Datatype and size should be checked before swapping data;
+
+
 
 
 --NOTE:
