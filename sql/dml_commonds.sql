@@ -40,6 +40,17 @@ update trainer set course='same_course';
 update trainer set course=name, name=course;
 --NOTE: Datatype and size should be checked before swapping data;
 
+--DELETE command
+--TO delete a record or all the records
+--Only deletes the data
+--It is slow process as it removes data row by row
+--Syntax: delete from t_name where <condition>
+--delete record at id is 2
+delete from trainer where id=2;
+
+--delete all records
+delete from trainer;
+
 
 
 
@@ -47,3 +58,8 @@ update trainer set course=name, name=course;
   set autocommit on;
 	set autocommit off;
 	commit;
+
+--To restore to previous transaction that last commit
+rollback;
+
+
