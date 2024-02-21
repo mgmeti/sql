@@ -33,3 +33,17 @@ ed;
 
 --CONNECT:
 --It is used to connect to different user in the database by entering username and password.
+
+--TO CREATE NEW USER 
+--Need to login as sys user
+connect;
+--enter: sys as sysdba
+--password
+--create a user
+create user user_name  identified by password;
+create user a1 identified by tiger;
+
+--Grant resource
+grant resource, connect to a1;
+
+
