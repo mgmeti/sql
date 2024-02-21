@@ -42,11 +42,13 @@ create table new_table_name as select * from old_table_name;
 --	2) insert always creates a new record in table.
 
 --ALTER
---Add a column, 
+--General syntax form:
+alter table table_name add/drop/rename/modify
+--Add a column to a table 
 --alter table table_name add col_name datatype;
 alter table emp1 add email varchar2(25);
 
---drop a column
+--drop a column from a table
 --alter table table_name drop column col_name;
 alter table emp1 drop column comm;
 
