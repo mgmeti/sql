@@ -6,6 +6,17 @@
 --truncate
 -- all ddl commonds are brings permanent changes
 
+--CREATE
+create table table_name (
+    id number(5),
+    col_name number(2),
+    col_varchar varchar2(5),
+    col_date date,
+    constraint pk_id primary key(id),
+    constraint uniq unique(col_name)
+)
+
+--DROP
 drop table table_name;
 
 -- table moved to recyclebin and bin address will be stored in current user tab.
