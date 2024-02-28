@@ -71,10 +71,18 @@ from emp
 where sal >= 3000;
 
 --Q8
-select *, sal * 12 as Annaul_Salary
+select emp.*, sal * 12 as Annaul_Salary
 from emp 
 where sal * 12 >= 36000;
 
+--Q9
+select ename,job,  deptno, sal
+from emp
+where job = 'MANAGER' and sal >2500;
 
+-- Relational operators
+select ename, job, sal
+from emp
+where sal > 1000 and sal < 3000 and job='ANALYST';
 
 --ORDER OF EXECUTION --> FROM -> WHERE -> SELECT ( as of now)
