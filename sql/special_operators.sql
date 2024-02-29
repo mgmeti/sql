@@ -1,0 +1,4 @@
+--Special Operators
+--IS
+--It id used to evaluate null values
+--Syntax--> column_name is null;
