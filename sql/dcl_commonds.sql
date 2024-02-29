@@ -215,6 +215,10 @@ where mgr=7839 and (job='ANALYST' or job='PRESIDENT') and (deptno=10 or deptno=2
 --syntax for NOT
 NOT column_name=value;
 
+select * 
+from emp
+where not deptno=20;
+
 
 
 
