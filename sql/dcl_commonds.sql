@@ -248,8 +248,24 @@ where not sal > 3000;
 
 --COMBINATION (AND, OR, NOT)
 --Q1
+select ename, sal, deptno
+from emp
+where (sal >2000 and sal < 4000) and (job='CLERK' or job='SALESMAN') and not deptno=20;
 
+--Q2
+select ename, sal, job, deptno
+from emp
+where (deptno=10 or deptno=20) and (job='CLERK' or job='MANAGER') and not (ename='SMITH' or ename='ALLEN');
 
+--Q3
+select *
+from emp
+where sal > 3000 and job='PRESIDENT' and (deptno=10 or deptno=20) and not (ename='MARTIN' or ename='MILLER');
+
+--Q4
+select *
+from emp
+where sal < 3000 and (deptno=20 or deptno=30) and not(job='MANAGER' or job='PRESIDENT');
 
 
 --ORDER OF EXECUTION --> FROM -> WHERE -> SELECT ( as of now)
