@@ -145,20 +145,46 @@ select ename, sal, job
 from emp
 where job='SALESMAN'  or job='MANAGER';
 
+ENAME             SAL JOB
+---------- ---------- ---------
+ALLEN            1600 SALESMAN
+WARD             1250 SALESMAN
+JONES            2975 MANAGER
+MARTIN           1250 SALESMAN
+BLAKE            2850 MANAGER
+CLARK            2450 MANAGER
+TURNER           1500 SALESMAN
+
 --Q3
 select ename, sal, mgr, deptno, job
 from emp
 where ename='SMITH' or ename='MILLER';
+
+ENAME             SAL        MGR     DEPTNO JOB
+---------- ---------- ---------- ---------- ---------
+SMITH             800       7902         20 CLERK
+MILLER           1300       7782         10 CLERK
 
 --Q4
 select empno, ename, job
 from emp
 where empno=7566 or empno=7902;
 
+     EMPNO ENAME      JOB
+---------- ---------- ---------
+      7566 JONES      MANAGER
+      7902 FORD       ANALYST
+
 --Q5
 select ename
 from emp
 where mgr=7839 or mgr=7639;
+
+ENAME
+----------
+JONES
+BLAKE
+CLARK
 
 --COMBINATION of AND , OR
 --Q1
@@ -166,15 +192,24 @@ select ename, sal, deptno, job
 from emp
 where job='ANALYST' and (deptno=10 or deptno=20);
 
+ENAME             SAL     DEPTNO JOB
+---------- ---------- ---------- ---------
+SCOTT            3000         20 ANALYST
+FORD             3000         20 ANALYST
+
 --Q2
 select ename, sal, deptno, job
 from emp
 where sal > 3000 and (job='CLERK' or job='SALESMAN' or job='MANAGER');
+-- no rows selected
 
 --Q3
 select ename, sal, job
 from emp
 where mgr=7839 and (job='ANALYST' or job='PRESIDENT') and (deptno=10 or deptno=20);
+
+-- no rows selected
+
 
 --NOTE:
 --syntax for NOT
