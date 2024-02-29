@@ -219,6 +219,18 @@ select *
 from emp
 where not deptno=20;
 
+select *
+from emp
+where not (deptno=10 or deptno=20);
+
+select *
+from emp
+where not deptno=10 and not deptno=20;
+
+select *
+from emp
+where not (deptno=10 or deptno=20 or job='CLERK' or job='MANAGER');
+
 
 
 
