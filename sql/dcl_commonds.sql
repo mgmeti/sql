@@ -118,5 +118,14 @@ select ename
 from emp
 where empno=7788 and job<>'MANAGER' and job<>'CLERK';
 
+--OR --> 
+select * 
+from emp
+where job='MANAGER' or job='CLERK';
+
+select ename
+from emp
+where (job='MANAGER' and deptno=30) or (job='CLERK' and deptno=10);
+
 
 --ORDER OF EXECUTION --> FROM -> WHERE -> SELECT ( as of now)
