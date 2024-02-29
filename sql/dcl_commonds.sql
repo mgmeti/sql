@@ -127,5 +127,17 @@ select ename
 from emp
 where (job='MANAGER' and deptno=30) or (job='CLERK' and deptno=10);
 
+select * 
+from emp
+where deptno = 20 or deptno=30;
+
+select *
+from emp
+where ename='SMITH' or ename='SCOTT' or ename='ADAMS' or ename='FORD';
+
+
+
+
+
 
 --ORDER OF EXECUTION --> FROM -> WHERE -> SELECT ( as of now)
