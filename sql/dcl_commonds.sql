@@ -231,6 +231,24 @@ select *
 from emp
 where not (deptno=10 or deptno=20 or job='CLERK' or job='MANAGER');
 
+--Q1
+select *
+from emp
+where not deptno=20;
+
+--Q2
+select *
+from emp
+where not (job='CLERK' or job='SALESMAN');
+
+--Q3
+select ename, sal
+from emp
+where not sal > 3000;
+
+--COMBINATION (AND, OR, NOT)
+--Q1
+
 
 
 
