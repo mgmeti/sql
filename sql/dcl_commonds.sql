@@ -135,7 +135,50 @@ select *
 from emp
 where ename='SMITH' or ename='SCOTT' or ename='ADAMS' or ename='FORD';
 
+--Q1
+select * 
+from emp
+where deptno=10 or deptno=20 or deptno=30 or deptno=40;
 
+--Q2
+select ename, sal, job
+from emp
+where job='SALESMAN'  or job='MANAGER';
+
+--Q3
+select ename, sal, mgr, deptno, job
+from emp
+where ename='SMITH' or ename='MILLER';
+
+--Q4
+select empno, ename, job
+from emp
+where empno=7566 or empno=7902;
+
+--Q5
+select ename
+from emp
+where mgr=7839 or mgr=7639;
+
+--COMBINATION of AND , OR
+--Q1
+select ename, sal, deptno, job
+from emp
+where job='ANALYST' and (deptno=10 or deptno=20);
+
+--Q2
+select ename, sal, deptno, job
+from emp
+where sal > 3000 and (job='CLERK' or job='SALESMAN' or job='MANAGER');
+
+--Q3
+select ename, sal, job
+from emp
+where mgr=7839 and (job='ANALYST' or job='PRESIDENT') and (deptno=10 or deptno=20);
+
+--NOTE:
+--syntax for NOT
+NOT column_name=value;
 
 
 
