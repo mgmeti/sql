@@ -36,6 +36,7 @@ select *
 from emp
 where mgr is not null;
 
+--Employee's who do not get commision and works iin department and gets salary
 select *
 from emp
 where deptno is not null and sal is not null and comm is null;
