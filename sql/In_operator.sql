@@ -37,8 +37,19 @@ where deptno in (10, 20, 30, 40, 50);
 --LHS takes only one argument and RHS takes multiple values
 --Syntax--> column_name not in (value1, value2....);
 
-
-
 select ename, job, sal, deptno
 from emp
 where deptno in (10, 20) and empno not in (3, 4);
+
+
+--Q3
+select ename, sal, deptno, job
+from emp
+where job not in ('CLERK', 'SALESMAN') and deptno not in (10, 30);
+--3 rows selected.
+
+--Q4
+select *
+from emp
+where comm is null and deptno is not null and job in ('CLERK', 'SALESMAN') and deptno not in (20, 30);
+--1 rows selected.
