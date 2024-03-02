@@ -59,12 +59,14 @@ where sal not between 900 and 2000;
 --7 rows selected.
 
 --Q2
+--Employee's who is not hired in year 82.
 select ename, hiredate
 from emp
 where  hiredate not between '01-jan-82' and '31-dec-82';
 --13 rows selected.
 
 --Q3
+--Hired between year 81 and 85, except for the year 82
 select ename, hiredate
 from emp
 where hiredate  between '01-jan-81' and '31-dec-85' and hiredate not between '01-jan-82' and '31-dec-82';
