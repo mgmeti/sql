@@ -39,6 +39,17 @@ from emp
 where hiredate between '01-jan-80' and '31-dec-85' and job = 'SALESMAN';
 --4 rows selected.
 
+--Q3
+--Name, hiredate, salary and department for the employee's who has salary between 500 to 1000 as clerk or salesman 
+--in department 10 or 20 hired from year 84 to 87.
+select ename, hiredate, sal, deptno
+from emp
+where sal between 500 and 1000 and hiredate between '01-jan-84' and '31-dec-87' and job in ('CLERK', 'SALESMAN') and deptno in (10, 20);
+--no rows selected
+
+--NOT BETWEEN operator
+-- It is opposite of between operator, instead of selecting the given range it will reject the values.
+--Syntax--> Column_name not between low_value and high_value;
 
 
 
