@@ -51,6 +51,24 @@ where sal between 500 and 1000 and hiredate between '01-jan-84' and '31-dec-87' 
 -- It is opposite of between operator, instead of selecting the given range it will reject the values.
 --Syntax--> Column_name not between low_value and high_value;
 
+--Q1
+--Get employee's details except who are earning salary of 900 to 2000;
+select * 
+from emp
+where sal not between 900 and 2000;
+--7 rows selected.
+
+--Q2
+select ename, hiredate
+from emp
+where  hiredate not between '01-jan-82' and '31-dec-82';
+--13 rows selected.
+
+--Q3
+select ename, hiredate
+from emp
+where hiredate  between '01-jan-81' and '31-dec-85' and hiredate not between '01-jan-82' and '31-dec-82';
+--10 rows selected.
 
 
 
