@@ -144,8 +144,8 @@ where ename like '%E_' and sal like '%0';
 --Q9
 select ename
 from emp
-where ename like '%LL%' and sal between 2000 and 4000;
---no rows selected
+where ename like '%LL%' and sal not between 2000 and 4000;
+--2 rows selected
 
 --Q10
 select ename
