@@ -1,4 +1,4 @@
---lower() - Used to convert given data intoo lowercase.
+--lower(char) - Used to convert given data intoo lowercase.
 SELECT LOWER('MR. SCOTT MCMILLAN') "Lowercase"
    FROM DUAL;
 
@@ -20,7 +20,7 @@ from emp
 where lower(ename) = 'smith';
 
 
--- upper() -> UPPER returns char, with all letters uppercase. (reutrns same datatype as given)
+-- upper(char) -> UPPER returns char, with all letters uppercase. (reutrns same datatype as given)
 SELECT UPPER('Large') "Uppercase"
    FROM DUAL;
 
@@ -38,3 +38,33 @@ select upper('jspydersbtm') "UpperCase" from dual;
 UpperCase
 -----------
 JSPYDERSBTM
+
+--INITCAP(char) - INITCAP returns char, with the first letter of each word in uppercase, all other letters in lowercase.
+
+select initcap(' e SALa cup nAMDE') as Name FROM DUAL;
+
+NAME
+-----------------
+ E Sala Cup Namde
+
+
+--length(char) --> The LENGTH functions return the length of char. 
+select ename
+From emp
+where length(ename) = 4;
+
+--Q1
+select ename,length(ename) "Length in charcters" 
+from emp;
+--14 rows selected.
+
+--Q2
+select ename
+From emp
+where length(ename) = 5;
+--8 rows selected.
+
+--Q3
+select ename, length(ename)
+from emp
+where ename in ('ALLEN', 'WARD');
