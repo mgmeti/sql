@@ -65,6 +65,11 @@ where length(ename) = 5;
 --8 rows selected.
 
 --Q3
-select ename, length(ename)
+select ename, length(ename) as "Length in charcters"
 from emp
 where ename in ('ALLEN', 'WARD');
+
+--Q4
+select ename, length(ename) as "Length in charcters"
+from emp
+where length(ename) in (4, 5);

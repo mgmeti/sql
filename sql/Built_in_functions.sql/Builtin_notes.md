@@ -14,6 +14,7 @@ User defined function - which is created by user for specific task by giving fun
 2. Multi Row Function (MRF) : aggregate/group function
 
 SRF() - It takes n number of inputs and executes and produce n number of outputs
+    - These functions can appear in select lists, WHERE clauses, START WITH and CONNECT BY clauses, and HAVING clauses.
 types of SRF():
         1. charcter function
         2. Number fucntion
@@ -22,7 +23,8 @@ types of SRF():
         5. Collection function
         6. Special function 
 
-## Charcter Function    
+## Charcter Function  
+Source: https://docs.oracle.com/cd/B13789_01/server.101/b10759/functions001.htm 
 1. Character Functions Returning Character Values - that return character values return values of the same datatype as the input argument.
 
 
