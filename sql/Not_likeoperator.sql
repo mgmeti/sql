@@ -25,3 +25,9 @@ select ename
 from emp
 where ename not like '%A' and ename not like '%E' and ename not like '%I' and ename not like '%O' and ename not like '%U' ;
 --13 rows selected.
+
+--Names with exactly two 'A' characters
+select ename
+from emp
+where ename like '%A%A%' and ename not like '%A%A%A%';
+
