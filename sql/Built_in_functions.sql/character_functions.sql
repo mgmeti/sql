@@ -87,4 +87,34 @@ from dual;
 select reverse('malayalam') "Palindrome"
 from dual;
 
---concat(c)
+--concat(chartype1, chartype2) --> Used to merge given inputs
+--Note concat operator (||) can be used in select clause.
+
+select concat('Hi', ename)
+from emp;
+
+select 'Hi ' || ename ||' how are you?'
+from emp;
+
+select concat(concat('Hi ', ename),  ' how are you?')
+from emp;
+
+--Q1
+select 'Hi ' || ename 
+from emp;
+
+--Q2
+select 'Hi ' || ename || ' your designation is ' || job as employee_details
+from emp;
+
+--Q3
+select 'Hi ' || ename || ' your salary is hiked upto 10% ' || (sal + sal * 0.1) as employee_salary_details
+from emp;
+
+--Q4
+
+
+
+
+
+
