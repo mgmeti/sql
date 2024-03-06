@@ -73,3 +73,18 @@ where ename in ('ALLEN', 'WARD');
 select ename, length(ename) as "Length in charcters"
 from emp
 where length(ename) in (4, 5);
+
+--reverse(cahr type) --> used to reverse the given input
+--Q1
+select reverse(ename) as reverse, ename
+from emp;
+
+--Q2
+select reverse('jspiders') "rvrsName" 
+from dual;
+
+--Q3
+select reverse('malayalam') "Palindrome"
+from dual;
+
+--concat(c)
