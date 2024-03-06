@@ -191,9 +191,26 @@ TRANS
 -----
 _D_MS
 
-SQL> select replace(TRANSLATE('ADAMS', 'AEIOU', '_____'), '_') from dual;
+select replace(TRANSLATE('ADAMS', 'AEIOU', '_____'), '_') from dual;
 
 REP
 ---
 DMS
+
+--To get count of consonants in employee names.
+select ename, length(replace(TRANSLATE(ename, 'AEIOU', '_____'), '_')) "Number of Consonants" from emp;
+
+SELECT LPAD('Page 1',15,'*.') "LPAD example"
+       FROM DUAL;
+
+LPAD example
+---------------
+*.*.*.*.*Page 1
+
+
+SELECT RPAD('Page 1',15,'*.') "RPAD example"
+       FROM DUAL;
+RPAD example
+---------------
+Page 1*.*.*.*.*
 
