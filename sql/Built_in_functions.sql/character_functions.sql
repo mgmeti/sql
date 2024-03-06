@@ -111,8 +111,42 @@ from emp;
 select 'Hi ' || ename || ' your salary is hiked upto 10% ' || (sal + sal * 0.1) as employee_salary_details
 from emp;
 
---Q4
+--Note: Note that for both CHAR and VARCHAR2 columns, the trailing blanks are preserved.
 
+--trim() --> used to remove specific/particular cahracter from the given string.
+--syntax: trim(leading/trailing/both 'char' from string)
+
+--Remove leading 'A' from ename.
+select trim(leading 'A' from ename) "NO_A" from emp;
+
+select trim('A' from 'AAAsapAAA') from dual;
+TRI
+---
+sap
+
+--Note:
+--If you do not specify trim_character, 
+-- then the default value is a blank space.
+
+select trim (' ' from '   adada  ') from dual;
+
+--If you specify only trim_source, then Oracle removes leading and trailing blank spaces.
+select trim('   adada  ') from dual;
+
+select trim(trailing 'P' from 'POP') from dual;
+--> 'PO'
+
+select trim(leading 'P' from 'POP') from dual;
+--> 'OP'
+
+select trim(both 'P' from 'POP') from dual;
+--> 'O'
+
+select trim( 'P' from 'POP') from dual;
+--> 'O'
+
+select trim(  ' POP ') from dual;
+--> 'POP' //Removes all the whitespaces
 
 
 
