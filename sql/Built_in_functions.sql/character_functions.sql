@@ -149,6 +149,51 @@ select trim(  ' POP ') from dual;
 --> 'POP' //Removes all the whitespaces
 
 
+--trims all of the left-most x's and y's from a string
+SELECT LTRIM('xyxXxyLAST WORD','xy') "LTRIM example"
+FROM DUAL;
 
+LTRIM exampl
+------------
+XxyLAST WORD
 
+--trims all the right-most occurrences of period, slash, and equal sign from a string:
+
+SELECT RTRIM('BROWNING: ./=./=./=./=./=.=','/=.') "RTRIM example" FROM DUAL;
+ 
+RTRIM exam
+----------
+BROWNING:
+
+--replace() --> REPLACE returns char with every occurrence of search_string replaced with replacement_string. 
+select replace('Qspiders', 'Q', 'J') "Changes " from dual;
+REPLACE
+-------
+Jspiders
+
+select replace('Qspiders', 'Q') from dual;
+REPLACE
+-------
+spiders
+
+SELECT REPLACE('JACK and JUE','J','BL') "Changes"
+      FROM DUAL;
+
+--REPLACE lets you substitute one string for another 
+--as well as to remove character strings.
+
+select length('ADAMS') -length(replace('ADAMS', 'A')) "Number of A's"
+from dual;
+--> 2 A's
+
+select TRANSLATE('ADAMS', 'AEIOU', '_____') from dual;
+TRANS
+-----
+_D_MS
+
+SQL> select replace(TRANSLATE('ADAMS', 'AEIOU', '_____'), '_') from dual;
+
+REP
+---
+DMS
 
