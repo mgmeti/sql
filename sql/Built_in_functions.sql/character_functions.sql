@@ -179,12 +179,43 @@ spiders
 SELECT REPLACE('JACK and JUE','J','BL') "Changes"
       FROM DUAL;
 
+select length('ADAMS') -length(replace('ADAMS', 'A')) "Number of A's"
+from dual;
+
 --REPLACE lets you substitute one string for another 
 --as well as to remove character strings.
 
+syntax: replace(main_string, search_String, replace_String);
+--Note: if you do not specify the replace_string, then search string is removed from main(source) string.
+--Q1
+select name, replace(name, 'R', 'D') from emp;
+
+--Q2
+select ename, length(ename) -length(replace(ename, 'A')) "Number of A's"
+from emp;
+
+--Q3
+select ename, job, replace(job, 'K', 'MMMM')
+from emp;
+
+--Q4
+select ename, replace(ename, 'R') 
+from emp where deptno in (10, 20);
+
+--Q5
 select length('ADAMS') -length(replace('ADAMS', 'A')) "Number of A's"
 from dual;
---> 2 A's
+
+--Q6
+select ename, job, replace(job, 'D', 'Z') 
+from emp where mgr in (7788, 7839);
+
+--Q7
+select ename, length(replace(translate(ename, 'AEIOU','99999'), '9')) "# of consonants" from emp;
+
+--Q8
+select ename, length(ename)-length(replace(translate(ename, 'AEIOU','99999'), '9')) "# of vowels" from emp;
+
 
 select TRANSLATE('ADAMS', 'AEIOU', '_____') from dual;
 TRANS
@@ -196,6 +227,9 @@ select replace(TRANSLATE('ADAMS', 'AEIOU', '_____'), '_') from dual;
 REP
 ---
 DMS
+
+
+   
 
 --To get count of consonants in employee names.
 select ename, length(replace(TRANSLATE(ename, 'AEIOU', '_____'), '_')) "Number of Consonants" from emp;
