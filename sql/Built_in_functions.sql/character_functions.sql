@@ -217,6 +217,9 @@ select ename, length(replace(translate(ename, 'AEIOU','99999'), '9')) "# of cons
 select ename, length(ename)-length(replace(translate(ename, 'AEIOU','99999'), '9')) "# of vowels" from emp;
 
 
+
+--TRANSLATE
+--It used to replace the given charcter in string, but it replace charcter by charcter.
 select TRANSLATE('ADAMS', 'AEIOU', '_____') from dual;
 TRANS
 -----
@@ -228,8 +231,31 @@ REP
 ---
 DMS
 
+select translate('ADAMS', 'AEIOU', '     ') "new name" from dual;
 
-   
+
+SQL> select length(translate('ADAMS', ' AEIOU', ' ')) "# of consonants" from  dual;
+
+# of consonants
+---------------
+              3
+
+select translate('ADAMS', ' '||translate('ADAMS', ' AEIOU', ' '),' ')  "vowels" from  dual;
+-->AA
+
+select translate('HELLO', ' '||translate('HELLO', ' AEIOU', ' '),' ')  "vowels" from  dual;
+-->EO
+
+select translate('HELLO RAJ', ' '||translate('HELLO RAJ', ' AEIOU', ' '),' ')  "vowels" from  dual;
+-->EO A
+select replace(translate('HELLO RAJ', ' '||translate('HELLO RAJ', ' AEIOU', ' '),' '), ' ')  "vowels" from  dual;
+-->EOA
+select replace(translate('HELLO RAJ', ' AEIOU', ' '),' ')  "consonants" from  dual;
+-->HLLRJ
+
+select translate(ename, ' '||translate(ename, 'AEIOU', ' '),' ')  "vowels" from  emp;
+
+
 
 --To get count of consonants in employee names.
 select ename, length(replace(TRANSLATE(ename, 'AEIOU', '_____'), '_')) "Number of Consonants" from emp;
