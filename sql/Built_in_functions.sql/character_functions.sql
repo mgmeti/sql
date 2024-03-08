@@ -1,4 +1,4 @@
---lower(char) - Used to convert given data intoo lowercase.
+--LOWER(char) - Used to convert given data intoo lowercase.
 SELECT LOWER('MR. SCOTT MCMILLAN') "Lowercase"
    FROM DUAL;
 
@@ -20,7 +20,7 @@ from emp
 where lower(ename) = 'smith';
 
 
--- upper(char) -> UPPER returns char, with all letters uppercase. (reutrns same datatype as given)
+-- UPPER(char) -> UPPER returns char, with all letters uppercase. (reutrns same datatype as given)
 SELECT UPPER('Large') "Uppercase"
    FROM DUAL;
 
@@ -48,7 +48,7 @@ NAME
  E Sala Cup Namde
 
 
---length(char) --> The LENGTH functions return the length of char. 
+--LENGTH(char) --> The LENGTH functions return the length of char(number). 
 select ename
 From emp
 where length(ename) = 4;
@@ -74,7 +74,7 @@ select ename, length(ename) as "Length in charcters"
 from emp
 where length(ename) in (4, 5);
 
---reverse(cahr type) --> used to reverse the given input
+--REVERSE(cahr type) --> used to reverse the given input
 --Q1
 select reverse(ename) as reverse, ename
 from emp;
@@ -87,7 +87,7 @@ from dual;
 select reverse('malayalam') "Palindrome"
 from dual;
 
---concat(chartype1, chartype2) --> Used to merge given inputs
+--CONCAT(chartype1, chartype2) --> Used to merge given inputs
 --Note concat operator (||) can be used in select clause.
 
 select concat('Hi', ename)
@@ -113,7 +113,7 @@ from emp;
 
 --Note: Note that for both CHAR and VARCHAR2 columns, the trailing blanks are preserved.
 
---trim() --> used to remove specific/particular cahracter from the given string.
+--TRIM() --> used to remove specific/particular cahracter from the given string.
 --syntax: trim(leading/trailing/both 'char' from string)
 
 --Remove leading 'A' from ename.
@@ -165,7 +165,7 @@ RTRIM exam
 ----------
 BROWNING:
 
---replace() --> REPLACE returns char with every occurrence of search_string replaced with replacement_string. 
+--REPLACE() --> REPLACE returns char with every occurrence of search_string replaced with replacement_string. 
 select replace('Qspiders', 'Q', 'J') "Changes " from dual;
 REPLACE
 -------
@@ -275,7 +275,7 @@ RPAD example
 Page 1*.*.*.*.*
 
 
---substr() -- Used to extract the part of the string from given string.
+--SUBSTR() -- Used to extract the part of the string from given string.
 --syntax: substr(main string, starting index number, number of charcaters)
 
 --Note: In sql index of string start from 1.
