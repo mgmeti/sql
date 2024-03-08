@@ -368,9 +368,10 @@ select ename, job, substr(reverse(job), -3)"RLS3"
 from emp;
 
 --Q4
-select ename, substr(ename, -2)"LS2"
+select ename, substr(ename, -2) "LS2"
 from emp
 where length(ename) =4;
+
 
 --Q5
 select substr(reverse('SUMAN'), 1,2) "NA" from dual;

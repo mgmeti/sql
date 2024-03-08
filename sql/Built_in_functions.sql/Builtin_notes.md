@@ -42,3 +42,24 @@ select * from dual;
 D   
 -
 X
+
+# UDF -user defined function
+--Declaration starts
+create or replace function sample(v1 number, v2 number)
+ return number
+ is
+ v3 number;
+--Declaration ends
+--Logic starts
+ begin
+ v3 := v1 +v2;
+ return v3;
+ end;
+--Logic ends
+
+select sample(10, 15) as total from dual;
+
+TOTAL
+-----
+   25
+
