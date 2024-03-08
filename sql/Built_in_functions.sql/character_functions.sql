@@ -274,3 +274,38 @@ RPAD example
 ---------------
 Page 1*.*.*.*.*
 
+
+--substr() -- Used to extract the part of the string from given string.
+--syntax: substr(main string, starting index number, number of charcaters)
+
+--Note: In sql index of string start from 1.
+
+select substr('jspider', 1, 2) "Substring" from dual;
+--> js
+
+select substr('jspider', 3) from dual;
+--> pider
+
+select substr('jspider', 4, 2) from dual;
+--> id
+
+select substr('jspider', 6, 2) from dual;
+--> er
+
+
+select substr('jspider', -1, 2) from dual;
+--> r
+
+select substr('jspider', -3, 2) from dual;
+--> de
+select substr('jspider', -2, 2) from dual;
+
+select ename
+from emp
+where substr(ename, 1, 1) = 'A';
+
+ENAME
+----------
+ALLEN
+ADAMS
+
