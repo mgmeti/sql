@@ -423,3 +423,10 @@ from emp
 where substr(ename, -1)  in('A', 'E','I','O','U') and deptno in (10, 20, 30, 40);
 
 
+select substr('1010101', 1, 1) as F from dual;
+--> 1
+
+--get first half
+select ename, length(ename) as "#ofchars", substr(ename, 1, length(ename)/2) "First-half" from emp;
+-- get second half
+select ename, length(ename) as "#ofchars", substr(ename,  length(ename)/2+1) "Second-half" from emp;
