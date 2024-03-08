@@ -285,20 +285,39 @@ select substr('jspider', 1, 2) "Substring" from dual;
 
 select substr('jspider', 3) from dual;
 --> pider
+-- If substring_length is omitted, then Oracle returns all characters to the end of string.
 
 select substr('jspider', 4, 2) from dual;
 --> id
+select substr('jspider', 4.3, 2) from dual;
+-->id
+select substr('jspider', 4.9, 2) from dual;
+-->id
+select substr('jspider', 4.9, 1.9) from dual;
+-->i
+--Note: Floating-point numbers passed as arguments to SUBSTR are automatically converted to integers.
 
 select substr('jspider', 6, 2) from dual;
 --> er
 
+-- If position is negative, then Oracle counts backward from the end of string.
+--Here negative start index access the elements from right handside (-5, -4, -3, -2, -1 for spider respectively)
+--Here positive sart index access the elements from left handside (1. 2, 3, 4, 5 for spider respectively)
+--Here number characters will taken from start index to the right hand side of string.
 
 select substr('jspider', -1, 2) from dual;
 --> r
+select substr('jspider', 0, 2) from dual;
+-->js
 
 select substr('jspider', -3, 2) from dual;
 --> de
+
 select substr('jspider', -2, 2) from dual;
+-->er
+
+select substr('jspider', -3, -2) from dual;
+-- If substring_length is less than 1, then Oracle returns null.
 
 select ename
 from emp
@@ -308,4 +327,98 @@ ENAME
 ----------
 ALLEN
 ADAMS
+
+
+--Names ends with vowels
+select ename
+from emp
+where substr(ename, -1, 1) in('A', 'E','I','O','U');
+
+--Names starts with consonants
+select ename
+from emp
+where substr(ename, 1, 1) not in('A', 'E','I','O','U');
+
+--Names ends with consonants
+select ename
+from emp
+where substr(ename, -1, 1) not in('A', 'E','I','O','U');
+
+-- names with last third charcter is 'T'
+select ename
+from emp
+where substr(ename, -3, 1) = 'T';
+-->MARTIN
+
+select ename
+from emp
+where substr(reverse(ename), 3, 1) = 'T';
+--> MARTIN
+
+--Q1
+select ename, substr(ename, 1, 3)"FR3"
+from emp;
+
+--Q2
+select ename, substr(ename, -4)"LS4"
+from emp;
+
+--Q3
+select ename, job, substr(reverse(job), -3)"RLS3"
+from emp;
+
+--Q4
+select ename, substr(ename, -2)"LS2"
+from emp
+where length(ename) =4;
+
+--Q5
+select substr(reverse('SUMAN'), 1,2) "NA" from dual;
+
+--Q6
+select substr(reverse('amruth'), 3,2) "ur" from dual;
+
+--Q7
+select ename, job
+from emp
+where substr(ename, -1) = 'R' and substr(job, -1) = 'K';
+
+ENAME      JOB
+---------- --------
+MILLER     CLERK
+
+--Q8
+select ename, job
+from emp
+where substr(ename, -1) in ('A', 'R');
+
+--Q9
+select ename, job
+from emp
+where substr(ename, 1, 1) in ('A', 'S');
+
+--Q10
+--Names starts with vowels
+select ename
+from emp
+where substr(ename, 1, 1) in('A', 'E','I','O','U');
+
+--Q11
+--Names starts with consonants
+select ename
+from emp
+where substr(ename, 1, 1) not in('A', 'E','I','O','U');
+
+--Q12
+--Names ends with consonants
+select ename
+from emp
+where substr(ename, -1) not in('A', 'E','I','O','U');
+
+--Q13
+--Names starts with consonants
+select ename
+from emp
+where substr(ename, -1)  in('A', 'E','I','O','U') and deptno in (10, 20, 30, 40);
+
 
