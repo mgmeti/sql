@@ -430,3 +430,7 @@ select substr('1010101', 1, 1) as F from dual;
 select ename, length(ename) as "#ofchars", substr(ename, 1, length(ename)/2) "First-half" from emp;
 -- get second half
 select ename, length(ename) as "#ofchars", substr(ename,  length(ename)/2+1) "Second-half" from emp;
+
+
+--replace first letter if it 'A' to 'S';
+select translate(substr('ALLAERN',1, 1), 'A', 'S')||substr('ALLAERN',2) from dual;
