@@ -426,10 +426,44 @@ where substr(ename, -1)  in('A', 'E','I','O','U') and deptno in (10, 20, 30, 40)
 select substr('1010101', 1, 1) as F from dual;
 --> 1
 
+--Q14
 --get first half
 select ename, length(ename) as "#ofchars", substr(ename, 1, length(ename)/2) "First-half" from emp;
+--Q15
 -- get second half
 select ename, length(ename) as "#ofchars", substr(ename,  length(ename)/2+1) "Second-half" from emp;
+
+--Bonus question
+--replace first letter if it 'A' to 'S';
+select translate(substr('ALLAERN',1, 1), 'A', 'S')||substr('ALLAERN',2) from dual;
+
+--Q16
+select ename, job
+from emp
+where substr(reverse(job), -1, 1) in ('A', 'P', 'T');
+-- 3 rows selected
+
+--Q17
+select ename, job, hiredate
+from emp
+where hiredate > '31-DEC-80' and  job in ('CLERK', 'SALESMAN') 
+      and deptno in (10, 20, 30) and substr(reverse(job), 4, 1) in ('S', 'P');
+-- 4 rows selected
+
+--Q18
+select ename
+from emp
+where substr(substr(ename, 1, length(ename)/2), -2, 1) in ('A','S','N','M');
+-- 4 rows selected
+
+--Q19
+select ename, job
+From emp
+where  substr(ename, -2, 1) = substr(job, -2, 1);
+-- 2 rows selected
+
+
+
 
 
 --replace first letter if it 'A' to 'S';
