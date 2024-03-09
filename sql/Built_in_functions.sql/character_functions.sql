@@ -437,6 +437,8 @@ select ename, length(ename) as "#ofchars", substr(ename,  length(ename)/2+1) "Se
 --replace first letter if it 'A' to 'S';
 select translate(substr('ALLAERN',1, 1), 'A', 'S')||substr('ALLAERN',2) from dual;
 
+select replace(substr('ALLAERN',1, 1), 'A', 'S')||substr('ALLAERN',2) from dual;
+
 --Q16
 select ename, job
 from emp
@@ -463,8 +465,52 @@ where  substr(ename, -2, 1) = substr(job, -2, 1);
 -- 2 rows selected
 
 
+--instr :- used display the position of the character
+--instr(arg1, aeg2, arg3, arg4) -- returns index value of given serch conditions
+--here arg1 --> main string
+-- arg2 --> search string
+-- arg3 --> start index value
+-- arg4 --> which occurance of search string you want
+
+select instr('JSP', 'S') from dual;
+--> 2
+-- It takes defalut values for arguments arg3 and arg4 as 1 and 1
+
+select instr('JSP', 'S', 1, 1) from dual;
+--> 2
+
+select instr('JSP', 'S', 3) from dual;
+--> 0 (no presence of 'S' after index 3 in given main string)
+
+select instr('JSP', 'S', 3, 1) from dual;
+--> 0
+
+select instr('JSPIDERS', 'S', 4, 1) from dual;
+--> 8
+
+select instr('JSPIDERS', 'S', -4, 1) from dual;
+--> 2
+
+--Atleast one 'A' in the employee names
+select ename
+from emp
+where instr(ename, 'A', 1, 1) != 0;
+
+--No 'A' in the employee names
+select ename
+from emp
+where instr(ename, 'A', 1, 1) = 0;
+
+--the second occurence of 'A' in the employee names
+select ename
+from emp
+where instr(ename, 'A', 1, 2) != 0;
+-->ADAMS
+
+select ename
+from emp
+where instr(ename, 'L', 1, 2) != 0 and instr(ename, 'I', 1, 1) = 0;
+--> ALLEN
 
 
 
---replace first letter if it 'A' to 'S';
-select translate(substr('ALLAERN',1, 1), 'A', 'S')||substr('ALLAERN',2) from dual;
