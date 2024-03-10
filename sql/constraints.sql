@@ -1,10 +1,10 @@
 --Constraints
---NOT NULL
---UNIQUE
---PRIMARY KEY
---FOREIGN KEY
---CHECK
---DEFAULT
+        --NOT NULL
+        --UNIQUE
+        --PRIMARY KEY
+        --FOREIGN KEY
+        --CHECK
+        --DEFAULT
 
 --NOT NULL ->To avoid null vlaues(empty space)
 column_name number(5) not null;
