@@ -1,7 +1,7 @@
 -- DDl commonds
 --create
 --drop
---rename
+--rename 
 --alter
 --truncate
 -- all ddl commonds are brings permanent changes
