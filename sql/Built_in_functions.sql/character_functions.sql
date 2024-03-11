@@ -561,8 +561,8 @@ where instr(ename, 'S', 1, 1) = 1 and instr(ename, 'E', 1, 1) != 0;
 --Q9
 select ename, sal
 from emp
-where instr(ename, 'A', 1, 1) != 0 and instr(sal, '0', -1, 1) != 0;
---7 rows selected.
+where instr(ename, 'A', 1, 1) != 0 and instr(ename, 'A', 1, 2) = 0 and instr(sal, '0', -1, 1) = length(sal);
+--6 rows selected.
 
 --Q10
 --Occurence of two 'L's and not occurrence of 'I'
