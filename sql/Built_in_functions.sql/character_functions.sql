@@ -491,11 +491,6 @@ select instr('JSPIDERS', 'S', 4, 1) from dual;
 select instr('JSPIDERS', 'S', -4, 1) from dual;
 --> 2
 
---Atleast one 'A' in the employee names
-select ename
-from emp
-where instr(ename, 'A', 1, 1) != 0;
-
 --No 'A' in the employee names
 select ename
 from emp
@@ -507,10 +502,71 @@ from emp
 where instr(ename, 'A', 1, 2) != 0;
 -->ADAMS
 
+--Occurence of two 'L's and not occurrence of 'I'
 select ename
 from emp
 where instr(ename, 'L', 1, 2) != 0 and instr(ename, 'I', 1, 1) = 0;
 --> ALLEN
 
+-- Occurence of 'A' exactly once in ename.
+select ename
+from emp
+where instr(ename, 'A', 1,1) !=0 and instr(ename, 'A', 1, 2) = 0;
+--6 rows selected.
 
+--Q1
+--Atleast one 'A' in the employee names
+select ename
+from emp
+where instr(ename, 'A', 1, 1) != 0;
 
+--Q2
+select ename
+from emp
+where instr(ename, 'S', 1, 3) !=0;
+--no rows selected
+
+--Q3
+select instr('RAVI', 'A', 1, 1) from dual;
+--2
+
+--Q4
+select instr('VANIVILAS', 'I', 1, 2) from dual;
+--6
+
+--Q5
+select ename, job
+from emp
+where instr(job, 'K', 1, 2) != 0;
+
+--Q6
+-- Occurence of 'A' exactly twice in ename.
+select ename
+from emp
+where instr(ename, 'A', 1,2) !=0 and instr(ename, 'A', 1, 3) = 0;
+--1 rows selected.
+
+--Q7
+select ename
+from emp
+where instr(ename, 'L', 1,2) !=0 and instr(ename, 'L', 1, 3) = 0 and instr(ename, 'A', 1, 1) = 1;
+--1 rows selected.
+
+--Q8
+select ename, job
+from emp
+where instr(ename, 'S', 1, 1) = 1 and instr(ename, 'E', 1, 1) != 0;
+--0 rows selected.
+
+--Q9
+select ename, sal
+from emp
+where instr(ename, 'A', 1, 1) != 0 and instr(sal, '0', -1, 1) != 0;
+--7 rows selected.
+
+--Q10
+--Occurence of two 'L's and not occurrence of 'I'
+select ename
+from emp
+where instr(ename, 'A', 1, 2) != 0 and instr(ename, 'I', 1, 1) = 0;
+--1 rows selected.
