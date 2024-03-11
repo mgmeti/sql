@@ -1,0 +1,5 @@
+--BLOCKS are basic units
+-- # blocks are there
+        -- DECLARATION BLOCK (OPTIONAL)
+        -- EXECUTION BLOCK (MUST)
+        -- EXCEPTION HANDLING BLOCK (OPTIONAL)
