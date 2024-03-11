@@ -108,3 +108,26 @@ SELECT ROUND(3.5f), ROUND(3.2f) FROM DUAL;
 -- 4.0E+000, 3.0E+000
 
 
+--trunc() -- used to remove/truncate the decimal value
+--trunc(arg1)
+--trunc(arg1, arg2)
+select trunc(25.5) from dual;
+--25
+select trunc(25.556, 1) from dual;
+--25.5
+select trunc(25.568, 2) from dual;
+--25.56
+
+select trunc(12345.5) from dual;
+--12345
+select trunc(12345.5, -1) from dual;
+--12340
+select trunc(12345.5, -2) from dual;
+--12300
+select trunc(12345.5, -3) from dual;
+--12000
+
+SELECT TRUNC(15.79,1) "Truncate" FROM DUAL;
+--15.7
+SELECT TRUNC(15.79,-1) "Truncate" FROM DUAL;
+--10
