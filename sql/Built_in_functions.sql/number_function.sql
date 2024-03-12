@@ -126,6 +126,8 @@ select trunc(12345.5, -2) from dual;
 --12300
 select trunc(12345.5, -3) from dual;
 --12000
+select trunc(12345.5, -4) from dual;
+--10000
 
 SELECT TRUNC(15.79,1) "Truncate" FROM DUAL;
 --15.7
