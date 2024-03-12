@@ -6,16 +6,17 @@ select;
 
 --Operators
 --Arithmatic --> +, -, *, /
+-- print hike salary by 10%
 select ename, sal, sal*1.1 as hike_salary
 from emp;
 
+--Print names of employee's who's salary after hike is more than 2000
 select ename, sal, sal * 1.1 as hike_salary
 from emp
 where sal * 1.1 > 2000;
 
---Ralational operators --> <, >, <=, >=, !=, <>
+--Ralational operators -->  < less than, > greater than, <= less than or equal to , >= greater than or equla to, != not equal, <> not equal
 --NULL can not be evaluated using relational operators 
-
 -- Details of the employee who is getting salary more than 2000
 select *
 from emp
@@ -26,11 +27,12 @@ select ename, sal, job
 from emp
 where job != 'CLERK';
 
+--Display ename, sal, job of employee's except job salesman
 select ename, sal, job
 from emp
 where job <> 'SALESMAN';
 
-
+--Display ename, sal, job of employee's except mgr 7839
 select ename, sal, job
 from emp
 where mgr <> 7839;
