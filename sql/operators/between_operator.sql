@@ -71,8 +71,3 @@ select ename, hiredate
 from emp
 where hiredate  between '01-jan-81' and '31-dec-85' and hiredate not between '01-jan-82' and '31-dec-82';
 --10 rows selected.
-
-
-
-
-
