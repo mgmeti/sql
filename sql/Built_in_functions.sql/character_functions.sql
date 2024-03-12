@@ -20,7 +20,7 @@ from emp
 where lower(ename) = 'smith';
 
 
--- UPPER(char) -> UPPER returns char, with all letters uppercase. (reutrns same datatype as given)
+-- UPPER(char) -> UPPER returns char, with all letters uppercase. (returns same datatype as given)
 SELECT UPPER('Large') "Uppercase"
    FROM DUAL;
 
@@ -166,6 +166,8 @@ RTRIM exam
 BROWNING:
 
 --REPLACE() --> REPLACE returns char with every occurrence of search_string replaced with replacement_string. 
+--syntax: replace(main_string, search_String, replace_String);
+--Note: if you do not specify the replace_string, then search string is removed from main(source) string.
 select replace('Qspiders', 'Q', 'J') "Changes " from dual;
 REPLACE
 -------
@@ -185,8 +187,7 @@ from dual;
 --REPLACE lets you substitute one string for another 
 --as well as to remove character strings.
 
-syntax: replace(main_string, search_String, replace_String);
---Note: if you do not specify the replace_string, then search string is removed from main(source) string.
+
 --Q1
 select name, replace(name, 'R', 'D') from emp;
 
