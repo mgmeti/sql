@@ -133,3 +133,26 @@ SELECT TRUNC(15.79,1) "Truncate" FROM DUAL;
 --15.7
 SELECT TRUNC(15.79,-1) "Truncate" FROM DUAL;
 --10
+
+--ceil(arg1): it round of to the next intger values based on the values given and it is x.1 or greater.
+
+select ceil(25.3) from dual;
+--26
+select ceil(25.1) from dual;
+--26
+select ceil(25.0) from dual;
+--25
+
+
+--sqrt(arg1): it is used to find square root of the given number
+select sqrt(2) from dual; --1.41
+select sqrt(4) from dual; --2
+
+--power(arg1, arg2): used to find exponential of given
+select power(2, 3) from dual; -- 8
+select power(3, 3)  from dual; -- 9
+
+
+--abs(arg1): used to convert -ve values to + values
+select abs(-20) from dual; --20
+select abs(-20.55) from dual;  --20.55
