@@ -36,6 +36,11 @@ ADD_MONTH
 ---------
 13-DEC-23
 
+
+--CURRENT_TIMESTAMP returns the current date and time in the session time zone, in a value of datatype TIMESTAMP WITH TIME ZONE
+select current_timestamp from dual;
+--CURRENT_DATE returns the current date in the session time zone, in a value in the Gregorian calendar of datatype DATE.
+select current_date  from dual;
 --Q1
 select current_date  from dual;
 
@@ -122,6 +127,84 @@ select to_char(trunc(current_date, 'DD'), 'dd:mon: yyyy hh12:mi:ss') "1dayMon"  
 select to_char(trunc(current_date, 'DD'), 'hh24:mi:ss') "1dayMon"  from dual; 
 
 
---MONTHS_BETWEEN returns number of months between dates date1 and date2.
 
+--MONTHS_BETWEEN returns number of months between dates date1 and date2.
+SELECT MONTHS_BETWEEN 
+   (TO_DATE('02-02-1995','MM-DD-YYYY'),
+    TO_DATE('01-01-1995','MM-DD-YYYY') ) "Months"
+    FROM DUAL;
+
+
+
+update emp set sal = sal*1.1
+where round(months_between(current_date, hiredate)/12) > 10;
+
+select months_between('15-DEC-2023', current_date)   from dual;
+    
+--Q1
+select months_between('01-jan-23', '31-dec-23') from dual;
+-- (-12)
+
+--Q2
+select ename, sal, hiredate, round(months_between(current_date, hiredate)/12) as experience_in_yrs 
+from emp;
+
+--Q3
+select emp.*
+from emp
+where round(months_between(current_date, hiredate)/12) > 40;
+
+--Q4
+select trunc(months_between(current_date, '02-jul-1990')/12) "AGE" from dual;
+select trunc(current_date, 'y') from dual;
+select trunc(26.9) from dual;
  
+--Q5
+update emp set sal = sal*1.1
+where round(months_between(current_date, hiredate)/12) > 40;
+
+--Q6
+select 'ARJUN' as name
+from dual
+where trunc(months_between(current_date, '02-jul-1990')/12) > 22;
+
+
+--last_day()
+-- LAST_DAY returns the date of the last day of the month that contains date
+--Q1
+select last_day(current_date) from dual;
+
+--Q2
+--Last month last day
+select last_day(ADD_MONTHS(current_date, -1)) from dual;
+--Q3
+--last month first day
+select last_day(ADD_MONTHS(current_date, -2))+1 from dual;
+
+--Q4
+select last_day(current_date)+1 as april1st, last_day(ADD_MONTHS(current_date, +1)) as aprillast
+from dual;
+
+select current_date"currentDay", last_day(current_date)"lastDay",last_day(current_date) - current_date  "Days left"
+from dual;
+
+currentDa lastDay    Days left
+--------- --------- ----------
+14-MAR-24 31-MAR-24         17
+
+
+--Next month last day
+select last_day(ADD_MONTHS(current_date, 1)) from dual;
+
+--Next day
+select current_date + 1 from dual;
+
+
+
+
+SELECT EXTRACT(YEAR FROM DATE '1998-03-07') FROM DUAL;
+SELECT EXTRACT(YEAR FROM  current_date) FROM DUAL;
+SELECT EXTRACT(YEAR FROM TO_DATE( '1998-03-07', 'yyyy-mm-dd')) FROM DUAL;
+
+
+
