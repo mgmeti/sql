@@ -199,12 +199,53 @@ select last_day(ADD_MONTHS(current_date, 1)) from dual;
 --Next day
 select current_date + 1 from dual;
 
+--EXTRACT( { YEAR
+           | MONTH
+           | DAY
+           | HOUR
+           | MINUTE
+           | SECOND}
 
+           from 
+           { datetime_value_expression}
+           );
 
+--EXTRACT extracts and returns the value of a specified datetime field from a datetime or interval value expression. 
 
 SELECT EXTRACT(YEAR FROM DATE '1998-03-07') FROM DUAL;
 SELECT EXTRACT(YEAR FROM  current_date) FROM DUAL;
 SELECT EXTRACT(YEAR FROM TO_DATE( '1998-03-07', 'yyyy-mm-dd')) FROM DUAL;
 
+--Q1
+select extract(month from hiredate) as month
+from emp
+where ename='SMITH';
+--12(DECEMBER)
 
+--Q2
+select extract(year from hiredate) as YEAR
+from emp
+where ename='ALLEN';
+--1981
+
+--Q3
+select extract(day from hiredate) as day
+from emp 
+where ename in ('KING', 'SCOTT') and deptno in (10, 20, 30) and length(ename) =4;
+
+--Q4
+select extract(month from hiredate) as months
+from emp;
+
+--Q5
+select ename, hiredate, extract(day from hiredate) as dayOfHire
+from emp;
+
+--Q6
+select extract(YEAR from date '2003-01-12') as year from dual;
+/*
+Note: select extract(YEAR from date '2003-JAN-12') as year from dual                              *
+ERROR at line 1:
+ORA-01843: not a valid month
+*/
 
