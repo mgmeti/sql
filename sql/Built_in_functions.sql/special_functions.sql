@@ -118,3 +118,39 @@ select to_char(current_date, 'yyyy-mm-dd') "YYYY-MM-DD" from dual;
 
 
 select ename, to_char(hiredate, 'DAY') "HIREDAY" from emp;
+--gives results for day's with whitespace as padding to have uniform string length of larger day string
+--It will same thing forthe month's also
+select ename, to_char(hiredate,'MONTH') "HIREMONTH", length( to_char(hiredate,'MONTH')) from emp;
+
+select ename, to_char(hiredate,'FMMONTH') "HIREMONTH", length( to_char(hiredate,'FMMONTH')) from emp;
+--Note: We use FM{MONTH | DAY} to remove trailing space of returned string.
+
+
+select ename, hiredate
+from emp
+where to_char(hiredate, 'DAY') in ('WEDNESDAY');
+--1 row selected
+
+
+select ename, hiredate
+from emp
+where to_char(hiredate, 'day') in ('WEDNESDAY');
+--0 row selected 
+
+-- Note: to_char() is case sensitive
+
+select to_char(date '2002-02-24', 'DAY') from dual;
+
+
+select ename, hiredate
+from emp
+where to_char(hiredate, 'MON') ='FEB';
+--2 row selected 
+
+
+select ename, hiredate
+from emp
+where to_char(hiredate, 'dd-mon') ='20-feb';
+--1 row selected
+
+
