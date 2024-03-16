@@ -201,3 +201,18 @@ select ename, hiredate, to_char(hiredate, 'fmyear') "YEAR"
 from emp
 where to_char(hiredate, 'fmyear') = 'nineteen eighty';
 
+select ename, hiredate, to_char(hiredate, 'fmyear') "YEAR"
+from emp
+where to_char(hiredate, 'year') = 'nineteen eighty-seven';
+
+select ename, hiredate, to_char(hiredate, 'fmyear') "YEAR", length(to_char(hiredate, 'year'))
+from emp;
+--Note: fm is optional for year formation.
+
+--to_date() function
+-- It is used to convert date string to date type
+select to_date('11MARCH2024', 'dd-mm-yyyy') from dual;
+select to_date('20241603', 'yyyyddmm') from dual;
+
+select to_date('16032024', 'ddmmyyyy') from dual;
+
