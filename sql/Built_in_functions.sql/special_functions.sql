@@ -62,25 +62,32 @@ arg2 - date format
 --sunday - 1
 --saturday - 7
 select to_char(current_date, 'd') from dual;
+--d --> 1,2,3.....(sunday - 1, monday - 2, teausday - 3, wednesday - 4, thursday - 5, friday - 6, saturday - 7 )
 --6 (friday)
 select to_char(current_date, 'dd') from dual;
+--dd  --> date of day in numeric
 --15
 select to_char(current_date, 'dy') from dual;
+--dy --> first  3 letters of day name.
 --fri
 select to_char(current_date, 'day') from dual;
+-- day --> complete details of day
 --friday
 
 select to_char(current_date, 'mm') from dual;
+--mm --> 01, 02, 03 .... (january - 01,   ..... december - 12)
 --03
 
 select to_char(current_date, 'mon') from dual;
---MAR
+--mon --> first 3 letters of month name.
+--mar
 
 select to_char(current_date, 'MONTH') from dual;
+-- MONTH --> full name of the months(uppercase)
 --MARCH
 
 select to_char(current_date, 'month') from dual;
---march
+--march --> full name of the months(lowercase)
 --Note: arg2 is case sensitive - it return based on arg2 
 
 
@@ -99,16 +106,19 @@ select to_char(current_date, 'year') from dual;
 --twenty twenty-four
 
 select to_char(current_date, 'HH12') from dual;
+--HH12 --> 12 hours format
 --06
 
 select to_char(current_date, 'HH24') from dual;
+--HH24  --> 24 hours format
 --18
 
 select to_char(current_date, 'MI') from dual;
+--MI --> returns minutes
 --04
 
-
 select to_char(current_date, 'SS') from dual;
+--SS  --> returns seconds
 --28
 
 
@@ -153,4 +163,41 @@ from emp
 where to_char(hiredate, 'dd-mon') ='20-feb';
 --1 row selected
 
+--Q1
+select to_char(current_date, 'DAY') "DAY"
+from dual;
+
+--Q2
+select ename, hiredate, to_char(hiredate, 'DAY') "HIREDAY" from emp; --day's with same length 
+select ename, hiredate, to_char(hiredate, 'FMDAY') "HIREDAY" from emp; -- day's with different length
+
+--Q3 employee's who hired on thursday.
+select ename, hiredate
+from emp
+where to_char(hiredate, 'DY') = 'THU';
+
+--Q4 employee's who hired on december.
+select ename, hiredate
+from emp
+where to_char(hiredate, 'mm') = 12;
+
+--Q5 employee's who hired on 20th.
+select ename, hiredate
+from emp
+where to_char(hiredate, 'dd') = 20;
+
+--Q6 employee's who has vowel in 4rth place when their month of hired was reversed.
+select ename, hiredate, to_char(hiredate, 'FMMONTH') "MONTHOFHIRE"
+from emp
+where substr(reverse(to_char(hiredate, 'FMMONTH')), 4, 1) in ('A', 'E', 'I', 'O', 'U');
+
+--Q7 employee's who's  the month of 3rd charcter is same as their day 3rd charcter.
+select ename, hiredate
+from emp
+where substr(to_char(hiredate, 'FMMONTH'), 3, 1) = substr(to_char(hiredate, 'FMDAY'), 3, 1);
+
+--Q8 employee's who hired in year nineteen eighty.
+select ename, hiredate, to_char(hiredate, 'fmyear') "YEAR"
+from emp
+where to_char(hiredate, 'fmyear') = 'nineteen eighty';
 
