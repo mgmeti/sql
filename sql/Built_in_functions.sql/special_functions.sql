@@ -211,8 +211,12 @@ from emp;
 
 --to_date() function
 -- It is used to convert date string to date type
+--to_date(arg1, arg2)  --> (datestring, format of datestring)
 select to_date('11MARCH2024', 'dd-mm-yyyy') from dual;
 select to_date('20241603', 'yyyyddmm') from dual;
-
 select to_date('16032024', 'ddmmyyyy') from dual;
 
+--Q1 what is the day of '19-SEP-2023'
+select to_char(to_date('19-SEP-2023'), 'DAY') "DAY" from dual;
+
+select to_char(date '2023-SEP-19', 'DAY') "DAY" from dual;
