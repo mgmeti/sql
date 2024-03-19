@@ -1,3 +1,16 @@
+/*
+Date functions
+    1. add_months(arg1, arg2) --> ADD_MONTHS(date, # of months)
+    2. trunc(arg1, arg2) --> trunc(date, 'mon') -- will give first day of the month
+                        --> trunc(date, 'yy') -- will give first day of the year
+                        --> trunc(date, 'dd') -- will give same day with 12 am
+    3. MONTHS_BETWEEN(arg1, arg2) --> returns number of months between dates date1 and date2.
+    4. LAST_DAY returns the date of the last day of the month that contains date
+
+    
+
+*/
+
 --ADD_MONTHS returns the date date plus integer months. 
 -- after one day
 select ADD_MONTHS('28-feb-2023', 1)  from dual;
@@ -106,7 +119,6 @@ where hiredate >= trunc(ADD_MONTHS(current_date, -3), 'MON');
 select substr(current_date, 3)  from dual;
 select '01'||substr(current_date, 3)  from dual;
 select ADD_MONTHS('01'||substr(current_date, 3), 1)  from dual;
-
 select ADD_MONTHS('01'||substr(current_date, 3), -1)  from dual;
 select ADD_MONTHS('01'||substr(current_date, 3), -3)  from dual;
 
@@ -126,8 +138,7 @@ select trunc(current_date, 'DD') "samedayAM" from dual;
 select to_char(trunc(current_date, 'DD'), 'dd:mon: yyyy hh12:mi:ss') "1dayMon"  from dual; 
 select to_char(trunc(current_date, 'DD'), 'hh24:mi:ss') "1dayMon"  from dual; 
 
-
-
+--MONTHS_BETWEEN
 --MONTHS_BETWEEN returns number of months between dates date1 and date2.
 SELECT MONTHS_BETWEEN 
    (TO_DATE('02-02-1995','MM-DD-YYYY'),
@@ -158,7 +169,7 @@ where round(months_between(current_date, hiredate)/12) > 40;
 select trunc(months_between(current_date, '02-jul-1990')/12) "AGE" from dual;
 select trunc(current_date, 'y') from dual;
 select trunc(26.9) from dual;
- 
+ select round(current_date, 'y') from dual;
 --Q5
 update emp set sal = sal*1.1
 where round(months_between(current_date, hiredate)/12) > 40;
