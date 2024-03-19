@@ -219,4 +219,10 @@ select to_date('16032024', 'ddmmyyyy') from dual;
 --Q1 what is the day of '19-SEP-2023'
 select to_char(to_date('19-SEP-2023'), 'DAY') "DAY" from dual;
 
-select to_char(date '2023-SEP-19', 'DAY') "DAY" from dual;
+
+
+select to_char(current_date, 'dd-mm-yyyy HH24:mi:ss') from dual;
+
+select to_char(current_date+(1/24), 'dd-mm-yyyy HH24:mi:ss') from dual;
+
+select to_char(current_date+(1/(24*60)), 'dd-mm-yyyy HH24:mi:ss') from dual;
