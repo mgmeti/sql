@@ -310,3 +310,21 @@ select deptno, count(deptno) "# employees"
 from emp
 where substr(ename, -1, 1) not in ('A', 'E', 'I', 'O', 'U')
 group by deptno;
+
+--Q13
+select to_char(hiredate, 'FMMONTH') "MONTH", count(*) "# employees"
+from emp
+group by to_char(hiredate, 'FMMONTH');
+
+---Q14
+select length(ename) "# charcters", count(*)"# employees"
+from emp
+group by length(ename);
+
+
+
+
+
+
+
+
