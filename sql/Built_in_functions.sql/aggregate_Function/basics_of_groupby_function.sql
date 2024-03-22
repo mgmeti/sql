@@ -316,10 +316,48 @@ select to_char(hiredate, 'FMMONTH') "MONTH", count(*) "# employees"
 from emp
 group by to_char(hiredate, 'FMMONTH');
 
----Q14
+--Q14
 select length(ename) "# charcters", count(*)"# employees"
 from emp
 group by length(ename);
+
+--Q15
+-- employees hired on saturday
+select to_char(hiredate, 'FMDAY') "SATURDAY", count(*) "# employees"
+from emp
+where to_char(hiredate, 'FMDAY')='SATURDAY'
+group by to_char(hiredate, 'FMDAY');
+
+/*
+customer - cust_id, cust_name, email
+product - prod_id, prod_name, category
+sales - sales_id, prod_id, cust_id, amount, sales_date
+
+*/
+--Q1
+--Total sales amount for each product
+select prod_id, sum(amount)
+from sales
+group by prod_id;
+
+--Q2
+--The total number of products fro each customer
+select cust_id, count(prod_id)
+from sales
+group by cust_id;
+
+--Q3
+--The avg purchage amount by each customer
+select cust_id, avg(amount)
+from sales
+group by cust_id;
+
+--Q4
+-- The total sales amount per month
+select to_char(sales_date, 'FMMONTH') "MONTH", sum(amount)
+from sales
+group by to_char(sales_date, 'FMMONTH');
+
 
 
 
