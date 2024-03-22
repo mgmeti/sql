@@ -159,3 +159,154 @@ select ename
 from emp
 where (length(ename) = (select min(length(ename))
 from emp));
+
+aggregate function:
+avg() :- used to obtain the average value of given group of columns.
+--Q1
+select avg(sal) from emp;
+
+--Q2
+select avg(sal) from emp where deptno=20;
+
+--Q3
+select avg(sal) from emp where job = 'MANAGER';
+
+--Q4
+select avg(sal) from emp where job = 'CLERK' and deptno=10;
+
+count() :- used to obtain no. of values present in specified column.
+Note: we can use * as argument.
+
+--Q1
+select count(*) from emp;
+
+--Q2
+select count(job) from emp where job='CLERK';
+
+--Q3
+select count(deptno) from emp where deptno=10;
+
+--Q4
+select count(ename) from emp where substr(ename, 1, 1) not in ('A', 'E', 'I', 'O', 'U');
+
+--Q5
+select count(ename) from emp where hiredate='03-dec-81';
+
+--Q6
+select count(ename) from emp where deptno in (10, 30) and job = 'MANAGER';
+
+--Q7
+select count(distinct sal) from emp;
+
+--Q8
+select count(job) - count(distinct) from emp;
+
+--Q9
+select max(sal), min(sal), avg(sal), count(ename)
+from emp
+where job = 'SALESMAN';
+
+
+--Note:
+select count(ename) from emp where hiredate between '03-dec-81' and '03-dec-81';
+
+/*
+Group by clause :  used to group the records.
+The column that is written in the group by can be used in select clause along with MRF fucntions.
+Syntax
+        select group function/ group by expression
+        from table_name
+        where < conditon>
+        group by column_1. column_2;
+
+Order of execution -> 1. from
+                      2. where (row by row)
+                      3. group by 
+                      4. select (group by group)
+
+Note: Any clause that is executing after group by clause will be executing by group.
+      Group by takes group of rows, if same vakues are present, it is going to group it one.
+
+
+*/
+select count(ename)
+from emp
+where substr(ename, 1, 1) not in ('A', 'E', 'I', 'O', 'U') or substr(ename, -1, 1) not in ('A', 
+'I', 'O', 'U')
+group by job;
+
+select job, count(job)
+from emp
+group by job;
+
+ select sal, count(sal)
+ from emp
+ group by sal;
+
+--Q1
+--Display maximum salary given to each department
+select deptno, max(sal)
+from emp
+group by deptno;
+
+--Q2
+--Display minimum salary given to each department
+select deptno, min(sal)
+from emp
+group by deptno;
+
+--Q3
+select job, max(sal)
+from emp
+where deptno in (10, 20)
+group by job;
+
+--Q4
+select job, min(sal)
+from emp
+where comm is null
+group by job;
+
+--Q5
+select deptno, sum(sal)
+from emp
+where job = 'CLERK'
+group by deptno;
+
+--Q6
+select deptno, count(deptno) "# employees"
+from emp
+group by deptno;
+
+--Q7
+select job, count(job) "# employees"
+from emp
+group by job;
+
+--Q8
+select ename, count(ename) "# times"
+from emp
+group by ename;
+
+--Q9
+select sal, count(sal) "# times"
+from emp
+group by sal;
+
+--Q10
+select job,  count(job) "# employees"
+from emp
+where mgr is not null
+group by job;
+
+--Q11
+select deptno, count(deptno) "# employees"
+from emp
+where substr(ename, -2, 1) ='r'
+group by deptno;
+
+--Q12
+select deptno, count(deptno) "# employees"
+from emp
+where substr(ename, -1, 1) not in ('A', 'E', 'I', 'O', 'U')
+group by deptno;
