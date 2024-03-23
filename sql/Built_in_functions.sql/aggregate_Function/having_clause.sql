@@ -151,7 +151,7 @@ select deptno, count(ename)
 from emp
 where job = 'ANALYST'
 group by deptno
-having count(ename) >=2;
+having count(ename) =2;
 
 --Q9
 select job, min(sal), max(sal)
@@ -171,29 +171,4 @@ select hiredate
 from emp
 group by hiredate
 having count(hiredate) >= 2;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
