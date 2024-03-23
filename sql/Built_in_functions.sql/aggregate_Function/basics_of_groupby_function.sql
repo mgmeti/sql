@@ -358,11 +358,3 @@ select to_char(sales_date, 'FMMONTH') "MONTH", sum(amount)
 from sales
 group by to_char(sales_date, 'FMMONTH');
 
-
-
-
-
-
-
-
-
