@@ -17,6 +17,7 @@ Having - Filter groups
        - written after group by clause
        - Group by is must to use having clause
        - MRF condition can  be used in having clause.
+       
        - having clause is implemented on columns.
 
 Syntax:
