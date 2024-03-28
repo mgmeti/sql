@@ -46,6 +46,50 @@ select ename, round((current_date - hiredate)/365)as exp
 from emp
 order by exp desc;
 
- 
+--Q1
+select *
+from emp
+order by sal asc;
 
+--Q2
+select *
+from emp
+order by ename desc;
+
+--Q3
+select *
+from emp
+order by hiredate desc;
+
+--Q4
+select ename, sal, hiredate, comm, deptno
+from emp
+order by deptno desc, sal desc;
+
+--Q5
+select ename, sal, empno, deptno
+from emp
+order by 2 desc;
+
+--Q6
+select deptno, count(*) as no_employees
+from emp
+group by deptno
+having count(*) > 4
+order by no_employees;
+
+--Q7
+select deptno, max(sal) as highest_salary
+from emp
+where job = 'MANAGER'
+group by deptno
+having count(*) >=1
+order by highest_salary desc;
+
+--Q8
+select deptno, sum(sal) as total_salary
+from emp
+group by deptno
+having count(*) > 2
+order by total_salary;
 
