@@ -209,6 +209,35 @@ where (sal, deptno) in (
                 having count(*) >1);
 
 
+--CASE3 :- Finding maximum and minimum of columns.
+-- Employees details who had maximum salary
+select *
+    from scott.emp
+    where sal = (
+        select max(sal)
+        from scott.emp);
+-- Employees details who had minimum salary
+select *
+    from scott.emp
+    where sal = (
+        select min(sal)
+        from scott.emp);
+
+--Employees details who hired on first day
+select *
+    from scott.emp
+    where hiredate = (
+        select min(hiredate)
+        from scott.emp);
+
+--Employees details who hired on last day
+select *
+    from scott.emp
+    where hiredate = (
+        select max(hiredate)
+        from scott.emp);
+
+
 --NESTED subqueries:
 --Option 1
  SELECT
