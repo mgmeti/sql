@@ -237,6 +237,157 @@ select *
         select max(hiredate)
         from scott.emp);
 
+--case3 finding maximum and minimum
+--Q1
+select *
+    from scott.emp
+    where sal = (
+        select max(sal)
+        from scott.emp);
+
+--Q2
+select *
+    from scott.emp
+    where sal = (
+        select min(sal)
+        from scott.emp);
+
+--Q3
+select *
+    from scott.emp
+    where hiredate = (
+        select min(hiredate)
+        from scott.emp);
+
+--Q4
+select *
+    from scott.emp
+    where hiredate = (
+        select max(hiredate)
+        from scott.emp);
+
+--Q5
+select max(sal)
+    from scott.emp
+    where sal < (
+        select max(sal)
+        from scott.emp);
+
+--Q6
+select *
+from scott.emp
+where sal = (
+        select max(sal)
+                from scott.emp
+                where sal < (
+                select max(sal)
+                from scott.emp)
+                );
+--Q7
+select min(sal)
+    from scott.emp
+    where sal > (
+        select min(sal)
+        from scott.emp
+        where sal > (
+                select min(sal)
+                from scott.emp
+                where sal > (
+                        select min(sal)
+                        from scott.emp)));
+--Q8
+select *
+from scott.emp
+where sal =(
+        select min(sal)
+        from scott.emp
+        where sal > (
+                select min(sal)
+                from scott.emp
+                where sal > (
+                        select min(sal)
+                        from scott.emp
+                        where sal > (
+                                select min(sal)
+                                from scott.emp))))
+                        ;
+--Q9
+select *
+from scott.emp
+where hiredate in (
+        select min(hiredate)
+        from scott.emp
+        where hiredate >(
+                select min(hiredate)
+                        from scott.emp
+                        where hiredate > (
+                                select min(hiredate)
+                                from scott.emp)
+                                ));
+--Q10
+select *
+from scott.emp
+where hiredate in (
+        select max(hiredate)
+                from scott.emp
+                where hiredate < (
+                select max(hiredate)
+                from scott.emp)
+                );
+
+--Q13
+select *
+from scott.emp
+where sal > (select sal 
+                from scott.emp
+                where ename='SMITH')
+        and sal <(
+                select sal 
+                from scott.emp
+                where ename ='KING'
+        );
+
+--Q14
+select ename, comm, deptno
+from scott.emp
+where comm is not null
+        and  deptno =(
+                select deptno 
+                from scott.emp
+                where ename ='ALLEN'
+
+        )  
+        and hiredate <(
+                select hiredate 
+                from scott.emp
+                where ename ='SCOTT'
+        );
+
+--Q15
+select ename
+from scott.emp
+where comm is not null
+        and  deptno =(
+                select deptno 
+                from scott.emp
+                where ename ='JAMES'
+
+        )  
+        and hiredate > (
+                select hiredate 
+                from scott.emp
+                where ename ='MARTIN'
+        )
+         and sal > (
+                select sal 
+                from scott.emp
+                where ename ='ADAMS'
+        )
+         and comm > (
+                select comm 
+                from scott.emp
+                where ename ='WARD'
+        );
 
 --NESTED subqueries:
 --Option 1
