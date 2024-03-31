@@ -389,6 +389,200 @@ where comm is not null
                 where ename ='WARD'
         );
 
+--CASE 4
+--subqueries with special operators.
+--ANY , ALL
+/*
+It is a special operator used along with relational operators. <, <=, >, >=, =, <>,
+To comapare the values present at the RHS 
+ANY operator return true if one of the values at RHS have satsfied the condition.
+
+ALL
+It is a special operator used along with relational operators.
+ALL operator becomes TRUE if the all the values at the RHS have satsfied the coonditon.
+
+*/
+--Q1
+-- Display name the Employee if the Employee earn less than the Employees working as salesman.
+select ename
+from scott.emp
+where sal < ALL (
+                        select sal
+                        from scott.emp
+                        where job = 'SALESMAN'
+                );
+--alternative
+select ename
+from ecott.emp
+where sal < (select min(sal)
+                from scott.emp
+                where job='SALESMAN');
+
+--Q2
+--Display name of the employee earn less than at least a salesman.
+
+select ename
+from scott.emp
+where sal < ANY (
+                        select sal
+                        from scott.emp
+                        where job = 'SALESMAN'
+                );
+--alternative
+select ename
+from ecott.emp
+where sal < (select max(sal)
+                from scott.emp
+                where job='SALESMAN');
+
+--Q3
+-- employees who earns more than ADAMS
+select ename
+from ecott.emp
+where sal > ALL (select max(sal)
+                from scott.emp
+                where ename='ADAMS');
+--alternative
+select ename
+from ecott.emp
+where sal > (select max(sal)
+                from scott.emp
+                where ename='ADAMS');
+
+
+--Q4
+-- Display name the Employee if the Employee earn more than the Employees working as salesman.
+select ename
+from scott.emp
+where sal > ALL (
+                        select sal
+                        from scott.emp
+                        where job = 'SALESMAN'
+                );
+--alternative
+select ename
+from ecott.emp
+where sal > (select max(sal)
+                from scott.emp
+                where job='SALESMAN');
+
+--Q5
+--Display name of the employee earn more than at least a salesman.
+
+select ename
+from scott.emp
+where sal > ANY (
+                        select sal
+                        from scott.emp
+                        where job = 'SALESMAN'
+                );
+--alternative
+select ename
+from ecott.emp
+where sal > (select min(sal)
+                from scott.emp
+                where job='SALESMAN');
+
+--Q6
+select ename
+from scott.emp
+where hiredate > ALL (
+                        select hiredate
+                        from scott.emp
+                        where job = 'CLERKS'
+                );
+--alternative
+select ename
+from scott.emp
+where hiredate >  (
+                        select max(hiredate)
+                        from scott.emp
+                        where job = 'CLERKS'
+                );
+--Q7
+
+--Display name of the employee earn less than at least a manager.
+
+select ename, sal
+from scott.emp
+where sal < ANY (
+                        select sal
+                        from scott.emp
+                        where job = 'MANAGER'
+                );
+--alternative
+select ename, sal
+from ecott.emp
+where sal < (select max(sal)
+                from scott.emp
+                where job='MANAGER');
+
+--Q8
+select ename, hiredate
+from scott.emp
+where hiredate < ALL (
+                        select hiredate
+                        from scott.emp
+                        where job = 'MANAGER'
+                );
+--alternative
+select ename, hiredate
+from scott.emp
+where hiredate <(
+                        select min(hiredate)
+                        from scott.emp
+                        where job = 'MANAGER'
+                );
+
+--Q9
+select ename, job, hiredate
+from scott.emp
+where hiredate > ALL (
+                        select hiredate
+                        from scott.emp
+                        where job = 'MANAGER'
+                ) and
+                sal > ALL (
+                        
+                        select sal
+                        from scott.emp
+                        where job = 'CLERKS'
+                );
+                
+--alternative
+select ename
+from scott.emp
+where hiredate <(
+                        select min(hiredate)
+                        from scott.emp
+                        where job = 'MANAGER'
+                ) and
+                sal >  (
+                        select max(sal)
+                        from scott.emp
+                        where job = 'CLERKS'
+                );
+--Q10
+select ename, job, hiredate
+from scott.emp
+where hiredate < ANY (
+                        select hiredate
+                        from scott.emp
+                        where job = 'SALESMAN'
+                )
+                and
+                job = 'CLERK';
+
+--Q11
+select ename, job, hiredate
+from scott.emp
+where hiredate > ALL (
+                        select hiredate
+                        from scott.emp
+                        where deptno = 10
+                )
+
+
 --NESTED subqueries:
 --Option 1
  SELECT
