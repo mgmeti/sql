@@ -582,6 +582,17 @@ where hiredate > ALL (
                         where deptno = 10
                 )
 
+--Q12
+--ename, sal if employee earning more than avg sal of each department
+select ename, sal
+from scott.emp
+where sal > ALL (
+        select round(avg(sal), 0)
+        from scott.emp
+        group by deptno
+);
+
+
 
 --NESTED subqueries:
 --Option 1
