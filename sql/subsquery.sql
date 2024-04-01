@@ -613,6 +613,11 @@ having count(*) > (
 );
 
 
+--Q15
+update scott.emp set comm=(select round(avg(comm)) from scott.emp)
+where comm is not null;
+
+
 --NESTED subqueries:
 --Option 1
  SELECT
@@ -634,3 +639,166 @@ WHERE
                                         from sub_tab_name ..);
 
 --Option 2 is preffered way as it minimizes the number of lookups in sub_tab_name.
+
+--Q1
+-- # of employees working in dallas
+select deptno, count(*) as no_of_employees
+from scott.emp
+where deptno = (
+        select deptno
+        from scott.dept
+        where loc ='DALLAS'
+);
+
+--Q2
+select deptno, max(sal) as highest_salary
+from scott.emp
+where deptno = (
+        select deptno
+        from scott.dept
+        where loc ='NEWYORK'
+);
+
+--Q3
+select deptno, sum(sal) as total_Salary
+from scott.emp
+where deptno = (
+        select deptno
+        from scott.dept
+        where loc ='CHICAGO'
+);
+
+--Q4
+select dname, loc
+from scott.dept
+where deptno in (select deptno
+                from scott.emp
+                where sal = (select sal from scott.emp where ename='ALLEN')
+                        and sal < (select sal from scott.emp where ename='KING'));
+
+--Q5
+select ename
+from scott.emp
+where (sal, deptno) in
+        (select max(sal), deptno
+        from scott.emp
+        group by deptno);
+
+--Q6
+select ename
+from scott.emp
+where sal < ALL
+        (select round(avg(sal))
+        from scott.emp
+        group by deptno);
+
+--Q7
+select *
+from scott.emp
+where (sal, job) = ANY
+                (select max(sal), job
+                from scott.emp
+                group by sal, job);
+
+--Q8
+select *
+from scott.emp
+where sal >ANY
+        (select round(avg(sal))
+        from scott.emp
+        group by job);
+
+--Q9
+select ename, sal
+from scott.emp
+where sal >ALL
+        (select round(avg(sal))
+        from scott.emp
+        group by deptno);
+
+--Q10
+select *
+from scott.dept
+where deptno in (
+        select deptno
+        from scott.emp
+        where (sal, deptno) in (select sal , deptno
+                                from scott.emp
+                                group by deptno
+                                having count(*)>1)
+);
+
+--Q11
+select * 
+from scott.dept
+where deptno =(
+        select deptno
+        from scott.emp
+        group by deptno
+        having count(*) =
+                (select max(count(*))
+                from scott.emp
+                group by deptno
+                ));
+
+--Q12
+
+select deptno, count(*)
+        from scott.emp
+        group by deptno
+        having count(*) =
+                (select min(count(*))
+                from scott.emp
+                group by deptno
+                );
+
+--Q13
+select *
+from scott.emp
+where deptno = (
+                select deptno
+                from scott.emp
+                group by deptno
+                having count(*) =
+                        (select min(count(*))
+                        from scott.emp
+                        group by deptno
+                        )
+);
+
+--Q14
+update scott.emp 
+set comm = (select round(avg(comm)) from scott.emp) 
+where comm is null;
+
+--Q15
+select deptno, round(avg(sal))
+from scott.emp
+where sal is not null
+group by deptno;
+
+--Q16
+select dname
+from scott.dept
+where deptno in (
+        select deptno
+        from scott.emp
+        group by deptno
+        having round(avg) > (select round(avg(sal))
+                                from scott.emp
+       ));
+
+--Q17
+select ename
+from scott.emp
+where (sal, deptno) in (
+select max(sal), deptno
+from scott.emp
+group by deptno
+having deptno in (
+        select deptno
+        from scott.emp
+        group by deptno
+        having count(mgr) >1
+));
+
