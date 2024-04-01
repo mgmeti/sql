@@ -592,6 +592,25 @@ where sal > ALL (
         group by deptno
 );
 
+--Q13
+select deptno,  round(avg(sal), 2) as avg_salary
+from scott.emp
+group by deptno
+having round(avg(sal), 2) >(
+        select round(avg(sal), 2)
+        from scott.emp
+
+);
+
+--Q14
+select deptno, count(*)
+from scott.emp
+group by deptno
+having count(*) > (
+        select max(count(*))
+        from scott.emp
+        group by deptno
+);
 
 
 --NESTED subqueries:
