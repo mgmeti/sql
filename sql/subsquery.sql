@@ -819,3 +819,4 @@ where  (sal, deptno) not in (
                 group by deptno
 ) 
 group by deptno ;
+
