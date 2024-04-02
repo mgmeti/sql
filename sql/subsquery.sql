@@ -789,16 +789,33 @@ where deptno in (
        ));
 
 --Q17
-select ename
+select ename, sal
 from scott.emp
-where (sal, deptno) in (
-select max(sal), deptno
-from scott.emp
-group by deptno
-having deptno in (
-        select deptno
-        from scott.emp
-        group by deptno
-        having count(mgr) >1
-));
+where (sal, deptno) in ( 
+        select max(sal), deptno
+                from scott.emp
+                group by deptno
+                having deptno in (
+                        select deptno
+                        from scott.emp
+                                where job='MANAGER'
+                        group by deptno
+                        having count(job) >1
+                ));
 
+--Q18
+
+select deptno, round(avg(sal))
+from scott.emp
+where  (sal, deptno) not in (
+
+                select max(sal), deptno
+                from scott.emp
+                where (sal, deptno) not in (
+                        select min(sal), deptno
+                        from scott.emp
+                        group by deptno
+                )
+                group by deptno
+) 
+group by deptno ;
