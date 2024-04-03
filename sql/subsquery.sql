@@ -882,3 +882,22 @@ where e1.mgr = (
         from scott.emp e2
         where e2.ename = 'KING'
 );
+
+--Employees working under jones
+select *
+from scott.emp e1
+where e1.mgr = (
+        select empno
+        from scott.emp e2
+        where e2.ename = 'JONES'
+);
+
+--TO display empno, ename,mgr, sal of  employees working under 'scott'
+select empno, ename, mgr, sal
+from scott.emp e1
+where e1.mgr =ANY (
+        select empno
+        from scott.emp e2
+        where e2.ename = 'SCOTT'
+    );
+
