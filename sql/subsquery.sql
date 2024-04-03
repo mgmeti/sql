@@ -820,3 +820,65 @@ where  (sal, deptno) not in (
 ) 
 group by deptno ;
 
+
+--CASE 5
+-- Employee with manager ralationship
+-- Within a emp table we can partition the details in two ways
+-- Empployee detials
+-- Manager detials
+--Finding out the manager of a particular employee
+-- In this case employees mgr should be matching with managers empno
+
+--INNER QUERY for employees
+--OUTER QUERY for managers
+select *
+from scott.emp e1
+where e1.empno = (
+        select mgr
+        from scott.emp e2
+        where e2.ename = 'SMITH'
+);
+
+--IN this case outer queries where clause should be empno and 
+--inner queries select clause should be mgr
+
+--Details of the jones manager
+select *
+from scott.emp e1
+where e1.empno = (
+        select mgr
+        from scott.emp e2
+        where e2.ename = 'JONES'
+);
+
+--Details of the FORD manager
+select *
+from scott.emp e1
+where e1.empno = (
+        select mgr
+        from scott.emp e2
+        where e2.ename = 'FORD'
+);
+
+--Finding out employees working under mamangers
+
+--Details of the employees working under manager
+select *
+from scott.emp e1
+where e1.mgr = (
+        select empno
+        from scott.emp e2
+        where e2.ename = 'FORD'
+);
+
+--employees working under particular manager
+--Inner query for manager's
+--Outer query in for employees
+
+select *
+from scott.emp e1
+where e1.mgr = (
+        select empno
+        from scott.emp e2
+        where e2.ename = 'KING'
+);
