@@ -901,3 +901,221 @@ where e1.mgr =ANY (
         where e2.ename = 'SCOTT'
     );
 
+
+
+--employees as well as managers in emp table
+--Note: 
+select *
+from scott.emp
+where empno in (select mgr
+                from scott.emp)
+
+select *
+from scott.emp
+where nvL(mgr, 0) = 0;
+
+
+select *
+from scott.emp
+where mgr is null;
+
+--Q1
+--smith's manager name
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename='SMITH'
+);
+
+--Q2
+--scott's manager name
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename='SCOTT'
+);
+
+--Q3
+--martin's manager name and also check if his name starts with consonants
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename='MARTIN'
+) and substr(ename, 1, 1) not in ('A','E', 'I', 'O', 'U')
+;
+
+--Q4
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename='MILLER'
+) and deptno in (10, 20)
+;
+
+--Q5
+
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename='ADAMS'
+) and deptno in (30, 20) and job in ('ANALYST', 'MANAGER') and length(ename)=5;
+
+--Q6
+--allen's and martin's manager name
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename in ('ALLEN', 'MARTIN')
+)
+;
+
+--Q7
+--scott, ward and ford's manager names
+select ename
+from scott.emp
+where empno in (
+                select mgr 
+                from scott.emp
+                where ename in ('SCOTT', 'WARD', 'FORD')
+)
+;
+
+--Q8
+--smith's manager's manager  name
+select ename
+from emp
+where empno in(
+        select mgr
+        from scott.emp
+        where empno in (
+                        select mgr 
+                        from scott.emp
+                        where ename='SMITH'
+        )
+)
+;
+
+--Q9
+--ALLEN's manager's  manager name if he works as manager
+select ename
+from emp
+where empno in(
+        select mgr
+        from scott.emp
+        where empno in (
+                        select mgr 
+                        from scott.emp
+                        where ename='ALLEN'
+        )
+) and job ='MANAGER'
+;
+
+--Q10
+--smith's manager's manager's manager name if he works as president
+select ename
+from emp
+where empno in (
+        select mgr
+        from emp
+        where empno in(
+                select mgr
+                from scott.emp
+                where empno in (
+                                select mgr 
+                                from scott.emp
+                                where ename='SMITH'
+                )
+        ) 
+) and job='PRESIDENT'
+;
+
+-- Q11
+--allen's manager location
+select loc
+from dept
+where deptno in (
+        select deptno
+        from scott.emp
+        where empno in (
+                        select mgr 
+                        from scott.emp
+                        where ename='ALLEN'
+        )
+)
+;
+
+
+--Q12
+--smith's manager manager dept details
+select *
+from dept
+where deptno in (
+        select deptno
+        from emp
+        where empno in(
+                select mgr
+                from scott.emp
+                where empno in (
+                                select mgr 
+                                from scott.emp
+                                where ename='SMITH'
+                )
+        )
+)
+;
+
+--Q13
+--employees details who are all reporting to king 
+select ename
+from emp
+where mgr in 
+        (select empno
+        from emp
+        where ename='KING');
+
+--Q14
+--employees details who are all reporting to blake
+select ename
+from emp
+where mgr in 
+        (select empno
+        from emp
+        where ename='BLAKE');
+
+--Q15
+--employees details who are all reporting to allen or ford
+select ename
+from emp
+where mgr in 
+        (select empno
+        from emp
+        where ename in ('ALLEN', 'FORD')
+        );
+
+
+--Q16
+--manager's who is alsp employees to the company
+select ename
+from emp
+where empno in (select mgr
+                from emp);
+
+
+--Q17
+--Employee who do not have reporting manager without using is null
+select ename
+from emp
+where nvl(mgr, 0) = 0;
+
