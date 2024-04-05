@@ -55,5 +55,3 @@ on e.deptno = d.deptno;
 
 NOTE: null columns can not be compared assignment operator.
     To deal with null values, use is null, is not null, nvl() function.
-
-    
