@@ -1113,9 +1113,9 @@ where mgr in (select mgr
                 where ename='BLAKE');
 
 --Q17
-select ename
+select *
 from emp
-where empno in (
+where mgr in (
                 select mgr
                 from emp
                 where empno in (select mgr 
