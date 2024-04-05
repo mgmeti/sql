@@ -1104,8 +1104,27 @@ where mgr in
         where ename in ('ALLEN', 'FORD')
         );
 
-
 --Q16
+--Who are all reporting to BLAKES manager
+select *
+from emp
+where mgr in (select mgr 
+                from emp
+                where ename='BLAKE');
+
+--Q17
+select ename
+from emp
+where empno in (
+                select mgr
+                from emp
+                where empno in (select mgr 
+                                from emp
+                                where ename='SMITH')
+);
+
+s
+--Q
 --manager's who is alsp employees to the company
 select ename
 from emp
@@ -1113,9 +1132,18 @@ where empno in (select mgr
                 from emp);
 
 
---Q17
+--Q
 --Employee who do not have reporting manager without using is null
 select ename
 from emp
 where nvl(mgr, 0) = 0;
+
+
+--Who are all reporting to jones manager
+select *
+from emp
+where mgr in (select mgr 
+                from emp
+                where ename='JONES');
+
 
