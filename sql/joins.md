@@ -140,11 +140,38 @@ select e.ename, e.job, d.dname, d.loc
     where e.job in ('CLERK', 'PRESIDENT') and d.loc in ('CHICAGO', 'DALLAS');
 ;
 ```
-Q9. Display name, mgr, department name and loc, if employee reporting manager is 7788 or 7839 and also works 
+Q9. Display name, mgr, department name and loc, if employee reporting manager is 7788 or 7839 and also works in research or accounting dept
 ```sql
 select e.ename, e.mgr, d.dname, d.loc
     from emp e
         join dept d on e.deptno=d.deptno
-    where e.mgr in ('7788', '7839') and d.job='SALES';
+    where e.mgr in ('7788', '7839') and d.dname in ('RESEARCH', 'ACCOUNTING')
+;
+```
+
+Q10. Display ename, employee deptno, sal, dname of the employees working in dept 20 with a salary more than 1800
+```sql
+select e.ename, e.deptno, e.sal,  d.dname
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.deptno=20  and e.sal > 1800
+;
+```
+
+Q11. Display ename, dname of the employees having character 'A' on their name and hired after year 83
+```sql
+select e.ename,  d.dname
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.ename like '%A%'  and e.hiredate > '31-DEC-83'
+;
+```
+
+Q11. Display ename, dname, if ename starting character must not be same as dname last character.
+```sql
+select e.ename,  d.dname
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where substr(e.ename, 1, 1) <> substr(d.dname, -1, 1)
 ;
 ```
