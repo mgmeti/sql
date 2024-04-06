@@ -55,3 +55,96 @@ on e.deptno = d.deptno;
 
 NOTE: null columns can not be compared assignment operator.
     To deal with null values, use is null, is not null, nvl() function.
+
+
+select ename, dname, d.deptno
+from emp e
+    join dept d    on e.deptno=d.deptno
+;
+
+Q1.Display ename with their dname
+
+```sql 
+select e.ename, d.dname
+    from emp e
+        join  dept d on e.deptno=d.deptno
+    ; 
+```
+
+Q2.Display employee details and department details
+ANCI SYNTAX:
+```sql
+select *
+  from emp e
+        join  dept d on e.deptno=d.deptno
+    ; 
+```
+ORACLE SYNTAX:
+```sql
+select *
+    from emp e, dept d
+        where e.deptno=d.deptno
+;
+```
+Q3.Display name, department name, loc if employees are working in NEW YORK.
+
+```sql
+select e.ename, d.dname, d.loc
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where d.loc='NEW YORK'
+;
+```
+
+Q4.Display name, job and department name, if employee work as SALESMAN
+```sql
+select e.ename, e.job, d.dname
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.job='SALESMAN'
+;
+```
+
+Q5. Display name, job and department name, if employees are working as clerk and the employee names with consonants
+```sql
+select e.ename, e.job, d.dname
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.job='CLERK' and substr(e.ename, 1, 1) not in ('A', 'E', 'I', 'O', 'U')
+;
+```
+
+Q6. Display name, job, deptno, loc and department name, if employees are working as manager and the employee working in deptno 20 or 10
+```sql
+select e.ename, e.job, e.depnto,  d.dname, d.loc
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.job='MANAGER' and e.deptno in (10, 20)
+;
+```
+
+Q7. Display name, job and department name, if employees are working as salesman and the employee works in sales dept
+```sql
+select e.ename, e.job, d.dname
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.job='SALESMAN' and d.dname='SALES';
+;
+```
+
+Q8. Display name, job, department name and loc, if employees are working as salesman and the employee works in sales dept
+```sql
+select e.ename, e.job, d.dname, d.loc
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.job in ('CLERK', 'PRESIDENT') and d.loc in ('CHICAGO', 'DALLAS');
+;
+```
+Q9. Display name, mgr, department name and loc, if employee reporting manager is 7788 or 7839 and also works 
+```sql
+select e.ename, e.mgr, d.dname, d.loc
+    from emp e
+        join dept d on e.deptno=d.deptno
+    where e.mgr in ('7788', '7839') and d.job='SALES';
+;
+```
