@@ -116,7 +116,7 @@ select e.ename, e.job, d.dname
 
 Q6. Display name, job, deptno, loc and department name, if employees are working as manager and the employee working in deptno 20 or 10
 ```sql
-select e.ename, e.job, e.depnto,  d.dname, d.loc
+select e.ename, e.job, e.deptno,  d.dname, d.loc
     from emp e
         join dept d on e.deptno=d.deptno
     where e.job='MANAGER' and e.deptno in (10, 20)
@@ -128,7 +128,7 @@ Q7. Display name, job and department name, if employees are working as salesman 
 select e.ename, e.job, d.dname
     from emp e
         join dept d on e.deptno=d.deptno
-    where e.job='SALESMAN' and d.dname='SALES';
+    where e.job='SALESMAN' and d.dname='SALES'
 ;
 ```
 
@@ -137,7 +137,7 @@ Q8. Display name, job, department name and loc, if employees are working as sale
 select e.ename, e.job, d.dname, d.loc
     from emp e
         join dept d on e.deptno=d.deptno
-    where e.job in ('CLERK', 'PRESIDENT') and d.loc in ('CHICAGO', 'DALLAS');
+    where e.job in ('CLERK', 'PRESIDENT') and d.loc in ('CHICAGO', 'DALLAS')
 ;
 ```
 Q9. Display name, mgr, department name and loc, if employee reporting manager is 7788 or 7839 and also works in research or accounting dept
