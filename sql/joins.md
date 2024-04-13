@@ -241,7 +241,8 @@ where substr(e2.ename, -1, 1) in ('A', 'E', 'I', 'O','U');
 ```
 Q8
 ```sql
-select e1.ename emp_name, e1.job, e2.ename manager, e2.job
+select e1.ename employee, e1.job, e1.sal, e1.deptno, e1.comm,
+         e2.ename manager, e2.job, e2.sal, e2.deptno. e2.comm
 from emp e1  join emp e2 on e1.mgr=e2.empno
-where e1.job=e2.job;
+where e1.comm > e2.comm and e1.deptno=10 and e2.job='MANAGER' and e1.hiredate < e2.hiredate;
 ```
