@@ -246,3 +246,4 @@ select e1.ename employee, e1.job, e1.sal, e1.deptno, e1.comm,
 from emp e1  join emp e2 on e1.mgr=e2.empno
 where e1.comm > e2.comm and e1.deptno=10 and e2.job='MANAGER' and e1.hiredate < e2.hiredate;
 ```
+ 
