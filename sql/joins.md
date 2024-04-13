@@ -182,21 +182,33 @@ select e.ename,  d.dname
 #### Self Join
 A table joining with itself.
 
+    1. A table joining with itself is called as self join.
+    2. It is used when you need to compare rows within the same table.
+    3. we alias the table with different names to distinguish between the two objects(instances).
+    4. each record of the table merges with each record of the same table.
 
+
+
+
+Q1
 ```sql
-select e1.ename ||' work for ' || e2.ename  "Employee and their managers"
+select e1.ename ||' works for ' || e2.ename  "Employee and their managers"
 from emp e1  join emp e2 on e1.mgr=e2.empno;
 ```
 
+
+
+Q2
 ```sql
-select e1.ename ||' work for ' || e2.ename  "Employee and their managers"
-from emp e1  left join emp e2 on e1.mgr=e2.empno;
+select e1.ename emp_name, e1.deptno, e2.ename manager
+from emp e1  join emp e2 on e1.mgr=e2.empno
+where e1.deptno in (10, 20);
 ```
 
 Q3
 ```sql
 select e1.ename employee, e2.ename manager, e2.job
-from emp e1  left join emp e2 on e1.mgr=e2.empno
+from emp e1   join emp e2 on e1.mgr=e2.empno
 where e2.job='MANAGER';
 ```
 
@@ -208,10 +220,28 @@ where e1.hiredate < e2.hiredate;
 ```
 
 
+Q5
+```sql
+select e1.ename emp_name, e1.deptno, e2.ename manager, e2.deptno
+from emp e1  join emp e2 on e1.mgr=e2.empno
+where e2.deptno in (30, 50);
+```
+Q6
+```sql
+select e1.ename emp_name, e1.job, e2.ename manager, e2.job
+from emp e1  join emp e2 on e1.mgr=e2.empno
+where e1.job=e2.job;
+```
+
 Q7
 ```sql
 select e1.ename employee, e1.sal emp_sal,  e2.ename manager
 from emp e1   join emp e2 on e1.mgr=e2.empno
 where substr(e2.ename, -1, 1) in ('A', 'E', 'I', 'O','U');
 ```
- 
+Q8
+```sql
+select e1.ename emp_name, e1.job, e2.ename manager, e2.job
+from emp e1  join emp e2 on e1.mgr=e2.empno
+where e1.job=e2.job;
+```
