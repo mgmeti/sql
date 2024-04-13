@@ -175,3 +175,43 @@ select e.ename,  d.dname
     where substr(e.ename, 1, 1) <> substr(d.dname, -1, 1)
 ;
 ```
+
+
+
+
+#### Self Join
+A table joining with itself.
+
+
+```sql
+select e1.ename ||' work for ' || e2.ename  "Employee and their managers"
+from emp e1  join emp e2 on e1.mgr=e2.empno;
+```
+
+```sql
+select e1.ename ||' work for ' || e2.ename  "Employee and their managers"
+from emp e1  left join emp e2 on e1.mgr=e2.empno;
+```
+
+Q3
+```sql
+select e1.ename employee, e2.ename manager, e2.job
+from emp e1  left join emp e2 on e1.mgr=e2.empno
+where e2.job='MANAGER';
+```
+
+Q4
+```sql
+select e1.ename employee, e1.hiredate emp_hiredate,  e2.ename manager, e2.hiredate manager_hiredate
+from emp e1   join emp e2 on e1.mgr=e2.empno
+where e1.hiredate < e2.hiredate;
+```
+
+
+Q7
+```sql
+select e1.ename employee, e1.sal emp_sal,  e2.ename manager
+from emp e1   join emp e2 on e1.mgr=e2.empno
+where substr(e2.ename, -1, 1) in ('A', 'E', 'I', 'O','U');
+```
+ 
