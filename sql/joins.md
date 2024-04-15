@@ -31,6 +31,8 @@ ON and WHERE clauses are used to establish relationa between tables.
     5. SELF JOIN
 
 
+
+
 #### [INNER] JOIN
 An INNER JOIN combines data from two tables where there is a match on the joining column(s) in both tables.
 
@@ -176,7 +178,13 @@ select e.ename,  d.dname
 ;
 ```
 
+#### cross join
+  
 
+#### natural join
+It act as inner join if the joining tables have common columns with same datatype.
+
+It act as cross join if there are no common column between tables while joining.
 
 
 #### Self Join
@@ -247,3 +255,42 @@ from emp e1  join emp e2 on e1.mgr=e2.empno
 where e1.comm > e2.comm and e1.deptno=10 and e2.job='MANAGER' and e1.hiredate < e2.hiredate;
 ```
  
+Q9
+employees and managers, and managers managers
+```sql
+select e.ename, m1.ename, m2.ename
+from emp e join emp m1
+on e.mgr=m1.empno
+join emp m2
+on m1.mgr=m2.empno;
+```
+Q9
+```sql
+select e.ename,  m2.ename
+from emp e, emp m1, emp m2
+where e.mgr=m1.empno and m1.mgr=m2.empno;
+```
+
+Q10
+employees and managers, and managers managers, and managers managers manager.
+```sql
+select e.ename,  m3.ename, 
+from emp e join emp m1
+on e.mgr=m1.empno
+join emp m2
+on m1.mgr=m2.empno
+join emp m3
+on m2.mgr=m3.empno;
+```
+
+Q11
+```sql
+select e.ename, m3.ename
+from emp e join emp m1
+on e.mgr=m1.empno
+join emp m2
+on m1.mgr=m2.empno
+join emp m3
+on m2.mgr=m3.empno
+where e.job='MANAGER' and e.deptno in (10,20);
+```
