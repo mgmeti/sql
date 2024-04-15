@@ -292,5 +292,5 @@ join emp m2
 on m1.mgr=m2.empno
 join emp m3
 on m2.mgr=m3.empno
-where e.job='MANAGER' and e.deptno in (10,20);
+where m3.job='MANAGER' and m3.deptno in (10,20);
 ```
