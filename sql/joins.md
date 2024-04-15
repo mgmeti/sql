@@ -283,7 +283,7 @@ join emp m3
 on m2.mgr=m3.empno;
 ```
 
-Q11
+Q11append
 ```sql
 select e.ename, m3.ename
 from emp e join emp m1
@@ -293,4 +293,26 @@ on m1.mgr=m2.empno
 join emp m3
 on m2.mgr=m3.empno
 where m3.job='MANAGER' and m3.deptno in (10,20);
+```
+
+Display employee name, employee location along with their manager name.
+
+```sql
+select e.ename, d1.loc "emp loc", m1.ename "mngr"
+from emp e
+join dept d1
+on e.deptno=d1.deptno
+join emp m1
+on m1.empno=e.mgr;
+```
+
+
+Display employee name, manager location along with their manager name.
+```sql
+select e.ename, m1.ename "mngr", d1.loc "mngr loc"
+from emp e
+join emp m1
+on m1.empno=e.mgr
+join dept d1
+on m1.deptno=d1.deptno;
 ```
