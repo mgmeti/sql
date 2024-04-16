@@ -320,7 +320,7 @@ on m1.deptno=d1.deptno;
 
 Display employee name, manager name, and managers loactions
 ```sql
-select e.ename, m.ename, d.loc
+select e.ename "ename", m.ename "m name", d.loc "m loc"
 from emp e
 join emp m
 on e.mgr=m.empno
@@ -328,3 +328,23 @@ join dept d
 on d.deptno = m.deptno;
 ```
 
+emp e
+empno | ename | mgr | deptno
+1       smith   2       10
+2       king            20
+
+emp m
+empno | ename | mgr | deptno
+1       smith   2       10
+2       king            20
+
+dept d
+deptno | dname          | loc
+10      accounting       New York
+20      Research         Dallas
+30      Sales            Chicago
+40      Opearations      Bostan
+
+Result set
+ename | m name | m loc
+smith   king     dallas
