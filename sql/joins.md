@@ -307,12 +307,24 @@ on m1.empno=e.mgr;
 ```
 
 
-Display employee name, manager location along with their manager name.
+Display employee name, manager name along with their manager location.
 ```sql
-select e.ename, m1.ename "mngr", d1.loc "mngr loc"
+select e.ename,e.deptno "emp dept", m1.ename "mngr", d1.loc "mngr loc", m1.deptno "mngr dept"
 from emp e
 join emp m1
 on m1.empno=e.mgr
 join dept d1
 on m1.deptno=d1.deptno;
 ```
+
+
+Display employee name, manager name, and managers loactions
+```sql
+select e.ename, m.ename, d.loc
+from emp e
+join emp m
+on e.mgr=m.empno
+join dept d
+on d.deptno = m.deptno;
+```
+
