@@ -348,3 +348,48 @@ deptno | dname          | loc
 Result set
 ename | m name | m loc
 smith   king     dallas
+
+
+display employee name, deptno, loc along with his manager name, deptno and loc.
+```sql
+select e.ename, e.deptno "edeptno", d1.loc "eloc", m.ename "mname", m.deptno "mdeptno", d2.loc "mloc"
+from emp e
+join dept d1
+on e.deptno=d1.deptno
+join emp m
+on e.mgr=m.empno
+join dept d2
+on d2.deptno=m.deptno;
+```
+
+display employee names who is earning more than smith
+```sql
+select e.ename
+from emp e
+join emp e1
+on e.sal > e1.sal and e1.ename ='SMITH';
+```
+
+display employee names and their manager who is earning more than allen
+```sql
+select e.ename, m.ename
+from emp e
+join emp m
+on m.empno = e.mgr
+join emp e1
+on e.sal > e1.sal and e1.ename ='SMITH';
+```
+
+```sql
+select e.ename, m2.ename
+from emp e
+join emp m1
+on e.mgr=m1.empno
+join emp m2
+on m2.empno=m1.mgr
+join emp sc
+on sc.ename ='scott' and sc.sal < m1.sal
+join emp ki
+on ki.ename='king' and ki.sal > m1.sal;
+
+```
