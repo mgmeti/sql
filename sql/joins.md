@@ -438,6 +438,17 @@ group by deptno)
 order by dname asc;
 ```
 
-
+```sql
+select  dname, count(*)
+from emp
+join dept
+on emp.deptno=dept.deptno
+and  (emp.deptno) in (select deptno
+from emp
+group by deptno
+having count(*) = (select min(count(*) from emp group by depntno ))
+)
+order by dname asc;
+```
 
     
