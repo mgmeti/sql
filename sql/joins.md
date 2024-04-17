@@ -391,5 +391,53 @@ join emp sc
 on sc.ename ='scott' and sc.sal < m1.sal
 join emp ki
 on ki.ename='king' and ki.sal > m1.sal;
+```
+
+calculate the vag(sal), dname for each department, dname,  along with avg(sal) order the result by avg(sal) in descending order.
+```sql
+select avg(sal), dname
+from emp
+join dept
+on emp.deptno=dept.deptno
+group by dname
+order by avg(sal) desc;
 
 ```
+
+find rthe number of employees in each dept and display the dept name along with the employee count, ordering the result by dname in asc
+```sql
+select  dname, count(ename)
+from emp
+join dept
+on emp.deptno=dept.deptno
+group by dname
+order by dname asc;
+```
+
+
+
+```sql
+select  dname, ename, sal
+from emp
+join dept
+on emp.deptno=dept.deptno
+and  (emp.deptno,emp.sal) in (select deptno, max(sal)
+from emp
+group by deptno)
+order by dname asc;
+```
+
+```sql
+select  dname, ename, hiredate
+from emp
+join dept
+on emp.deptno=dept.deptno
+and  (emp.deptno,emp.hiredate) in (select deptno, max(hiredate)
+from emp
+group by deptno)
+order by dname asc;
+```
+
+
+
+    
