@@ -446,9 +446,16 @@ on emp.deptno=dept.deptno
 and  (emp.deptno) in (select deptno
 from emp
 group by deptno
-having count(*) = (select min(count(*) from emp group by depntno ))
-)
+having count(*) = (select min(count(*)) from emp group by deptno ))
 order by dname asc;
 ```
+```sql
+select  dname, sum(sal)
+from emp
+join dept
+on emp.deptno=dept.deptno
+group by dname
+order by sum(sal) desc;
+
 
     
