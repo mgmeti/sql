@@ -88,7 +88,7 @@ from dept d
 where d.deptno not in (select deptno
                     from emp e
                     where d.deptno = e.deptno);
-```
+``` 
 
 Get name and department name for each employee.
 ```sql
@@ -99,6 +99,92 @@ from emp e;
 ```sql
 select  (select dname from dept d where d.deptno=e.deptno) "Deprtment"
 from emp e;
+```
+
+Get 3rd maximum salary in emp
+```sql
+select e1.sal
+from emp e1
+where 3 = (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal);
+```
+
+
+Get 6th maximum salary in emp
+```sql
+select e1.sal
+from emp e1
+where 6 = (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal);
+```
+
+
+Get 8th maximum salary in emp
+```sql
+select e1.sal
+from emp e1
+where 8 = (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal);
+```
+
+Get 1st, 3rd and 5th max salaries.
+```sql
+select distinct *
+from emp e1
+where (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal) in (1,3,5);
+```
+Get 2nd, 4th and 8th max salaries.
+```sql
+select distinct *
+from emp e1
+where (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal) in (2, 4, 8);
+```
+
+get 5th minimum salary
+```sql
+select distinct *
+from emp e1
+where  (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) =5
+order by e1.sal;
+```
+get 2nd, 4th,5th and 7th minimum salaries
+```sql
+select distinct *
+from emp e1
+where  (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) in (2, 4, 5, 7)
+order by e1.sal;
+```
+
+Get max 3 salaries and min 3 salaries.
+```sql
+select distinct *
+from emp e1
+where (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal) <=3 or (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) <=3
+order by e1.sal;
+```
+
+Get  5th max salary and  4th min salry.
+```sql
+select distinct *
+from emp e1
+where (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal) = 5 or (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) = 4
+order by e1.sal;
+```
+
+Get 3rd, 4th and  5th max salary and  4th, 5th and 6th min salry.
+```sql
+select distinct *
+from emp e1
+where (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal) in (3, 4, 5) or (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) in (4, 5, 6)
+order by e1.sal;
+```
+Get 3rd, 4th and  5th max salary and  4th, 5th and 6th min salry using UNION Set
+```sql
+select distinct *
+from emp e1
+where (select count(distinct e2.sal) from emp e2 where e2.sal >= e1.sal) in (3, 4,5)
+union
+select distinct *
+from emp e1
+where  (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) in ( 4, 5, 6) 
+order by 6;
 ```
 
 
