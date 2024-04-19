@@ -31,4 +31,9 @@ end;
 /
 
 ----------------------------------------------
-
+declare
+ num number := 100;
+begin
+   dbms_output.put_line(num);
+end;
+/
