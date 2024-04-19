@@ -187,4 +187,24 @@ where  (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) in ( 4
 order by 6;
 ```
 
+#### EXISTS (other than null) -> retunrs true
+Exists operator returnbs true if the subquery returns any value other than null.
+```sql
+select d1.dname
+from dept d1
+where exists (select 1
+                from emp e1
+                where e1.deptno = d1.deptno);
+```
+#### NOT EXISTS (for a null)  -> returns true
+not exists operator returns true if the subquery returns null.
+```sql
+select d1.dname
+from dept d1
+where not exists (select 1
+                from emp e1
+                where e1.deptno = d1.deptno);
+```
+
+
 
