@@ -186,7 +186,22 @@ from emp e1
 where  (select count(distinct e2.sal) from emp e2 where e2.sal <= e1.sal) in ( 4, 5, 6) 
 order by 6;
 ```
+--> Note:
+    get nth maximum of sal
+```sql
+select *
+from emp e1
+where 5-1 = (select count(distinct e2.sal)
+            from emp e2
+            where e2.sal > e1.sal);
 
+
+select *
+from emp e1
+where 5-1 = (select count(distinct e2.sal)
+            from emp e2
+            where e1.sal < e2.sal);
+```
 #### EXISTS (other than null) -> retunrs true
 Exists operator returnbs true if the subquery returns any value other than null.
 ```sql
