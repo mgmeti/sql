@@ -33,7 +33,13 @@ end;
 ----------------------------------------------
 declare
  num number := 100;
+ num1 number :=200;
+ so number :=0;
 begin
-   dbms_output.put_line(num);
+ so := num+num1;
+ dbms_output.put_line(so);
+ dbms_output.put_line(num);
+ dbms_output.put_line(num1);
+ dbms_output.put_line(num+num1);
 end;
 /
