@@ -1,0 +1,90 @@
+### SET OPERATORS
+Defnition:->These operators are used to merge multiple select statements and produce single result set.
+
+Note:
+    -> Set operators combine the results of two component queries into a single result. 
+    -> Queries containing set operators are called compound queries
+
+Rules for using set operators:
+    1. # of columns must be same for using set opertors between result sets of select statements.
+    2. Datatypes of each columns must match.
+
+##### union
+    it is used to combine the results of two or more select statements.
+        --> inside the select statement number of column and datatype should be same
+        --> Repeated records will display only once.
+        --> Output will be displayed in alphabetical order.
+
+##### union all
+    It takes all the records from all the select statements.
+        --> Results display based on (all the records from 1st table later merge all the records from 2nd table).
+        (one after the other)
+
+##### intersect
+    Keeps those records which are common in both result tables
+
+##### minus
+    Gives only unique records from first result table by removing common records.
+
+Operator	        Returns
+UNION           All distinct rows selected by either query
+
+UNION ALL       All rows selected by either query, including all duplicates
+
+INTERSECT       All distinct rows selected by both queries
+
+MINUS           All distinct rows selected by the first query but not the second
+
+
+```sql
+select ename from emp
+union
+select dname from dept;
+```
+
+```sql
+select ename from emp
+union all
+select dname from dept;
+```
+
+```sql
+select ename from emp
+intersect
+select dname from dept;
+```
+
+```sql
+select ename from emp
+minus
+select dname from dept;
+```
+
+
+```sql
+select empno from emp
+union 
+select mgr from emp;
+```
+Note: Results set will be ordered in ascending and records will be unique.
+
+```sql
+select empno from emp
+union all
+select mgr from emp;
+```
+Note: Results set will notbe ordered and it will have duplicates.
+
+```sql
+select empno from emp
+intersect 
+select mgr from emp;
+```
+Note: only common records and no records are duplicated.
+        result set ordered in asending order.
+
+```sql
+select empno from emp
+minus 
+select mgr from emp;
+```
