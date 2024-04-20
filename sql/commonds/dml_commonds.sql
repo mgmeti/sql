@@ -28,7 +28,7 @@ insert into cust(cno) values(8);
 insert into vpc(pid, pd) select prod_id, prod_desc from vp;
 
 --UPDATE COMMAND
---syntax: update t_name set col_name='new_value' where <condition>;
+--syntax: update table_name set col_name='new_value' where <condition>;
 update trainer set course='js' where id=10;
 
 --for multiple values for multiple columns
@@ -59,7 +59,7 @@ delete from trainer;
 	set autocommit off;
 	commit;
 
---To restore to previous transaction that last commit
+--To restore to previous transaction that last committed.
 rollback;
 
 
