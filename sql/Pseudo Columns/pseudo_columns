@@ -1,0 +1,21 @@
+### Pseudo columns
+These are special types of column which are not physically stored in table.
+
+Used in ranking and identifying unique rows.
+When the tble information is unkown.
+We cannot insert, delete or update pseudo columns.
+if, user wants to see the pseudo columns, explicitly user must and should call the columns in select query.
+
+Note: behaves like actual column but not stored in the table.
+
+
+#### rownum
+For each row returned by a query, the rownum pseudo column returns a number indicating the order in which selects the rows from a table.
+
+it starts from 1 and increment by 1.
+
+    used to limit number of rows retunrs in a query.
+    it is dynamic.
+    it is unique.
+    can be used in select and where clause.
+    rownum might change(dynamic) whenwe use order byclause in query.
