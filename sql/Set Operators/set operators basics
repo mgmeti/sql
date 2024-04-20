@@ -21,10 +21,13 @@ Rules for using set operators:
         (one after the other)
 
 ##### intersect
-    Keeps those records which are common in both result tables
+    It is type of set operator used to merge the result from one or more select statements.
+        -> it gives only which are common in all the select the statements.
+        -> Keeps those records which are common in both result tables
 
 ##### minus
-    Gives only unique records from first result table by removing common records.
+    It is type of set operator used to merge the result from one or more select statements.
+        -> Gives only unique records from first result table by removing common records.
 
 Operator	        Returns
 UNION           All distinct rows selected by either query
@@ -34,6 +37,7 @@ UNION ALL       All rows selected by either query, including all duplicates
 INTERSECT       All distinct rows selected by both queries
 
 MINUS           All distinct rows selected by the first query but not the second
+
 
 
 ```sql
