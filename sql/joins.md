@@ -13,7 +13,7 @@ Joins are used to combine data from multiple tables to form a single result set.
     5. ANSI SYNTAX -> Join condition with ON clause.
     6. ORACLE SYNTAX -> Join condition with WHERE clause.
 
-
+  
 Why?? ->  To avoid querying same table multiple times
 
 ON and WHERE clauses are used to establish relationa between tables.
@@ -22,7 +22,7 @@ ON and WHERE clauses are used to establish relationa between tables.
 
 #### Types Of Joins
     1. [INNER] JOIN (EQUI JOIN)
-    2. OUTER JOIN
+    2. OUTER JOIN 
             a. LEFT
             b. RIGHT
             c. FULL
@@ -283,10 +283,11 @@ join emp m3
 on m2.mgr=m3.empno;
 ```
 
-Q11append
+Q11
 ```sql
 select e.ename, m3.ename
-from emp e join emp m1
+from emp e 
+join emp m1
 on e.mgr=m1.empno
 join emp m2
 on m1.mgr=m2.empno
@@ -318,12 +319,12 @@ on m1.deptno=d1.deptno;
 ```
 
 
-Display employee name, manager name, and managers loactions
+Display employee name, manager name, and managers locations
 ```sql
 select e.ename "ename", m.ename "m name", d.loc "m loc"
 from emp e
 join emp m
-on e.mgr=m.empno
+on e.mgr=m.empno 
 join dept d
 on d.deptno = m.deptno;
 ```

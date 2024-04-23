@@ -19,3 +19,31 @@ it starts from 1 and increment by 1.
     it is unique.
     can be used in select and where clause.
     rownum might change(dynamic) whenwe use order byclause in query.
+
+```sql
+select emp.*, rownum
+from emp
+where sal <=3000 and rownum <=2;
+```
+
+```sql
+ select * 
+ from (select * 
+        from emp 
+        where sal <= 3000 
+        order by sal asc ) 
+where  rownum <=2 ;
+ ```
+
+Get second row of emp by using rownum.
+ ```sql
+ select *
+ from (select * 
+        from emp 
+        where rownum <= 2 
+        order by rownum desc)
+ where rownum=1;
+ ```
+
+ 
+
