@@ -45,5 +45,31 @@ Get second row of emp by using rownum.
  where rownum=1;
  ```
 
- 
+```sql
+select e.*, rownum r1
+from (select emp.*, rownum r
+        from emp ) e
+where e.r =2;
+```
+```sql
+select e.*, rownum r1
+from (select emp.*, rownum r
+        from emp ) e
+where e.r in (1,5, 10, 12);
+```
+
+```sql
+select e.*, rownum r1
+from (select emp.*, rownum r
+        from emp 
+        order by r desc) e
+where rownum=1;
+```
+
+```sql
+select e.*, rownum r1
+from (select emp.*, rownum r
+        from emp ) e
+where e.r =(select count(*) from emp);
+  
 
