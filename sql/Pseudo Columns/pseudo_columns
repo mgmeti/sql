@@ -49,15 +49,47 @@ Get second row of emp by using rownum.
 select e.*, rownum r1
 from (select emp.*, rownum r
         from emp ) e
-where e.r =2;
+where e.r in (1,5, 10, 12);
 ```
+
+
+
 ```sql
 select e.*, rownum r1
 from (select emp.*, rownum r
         from emp ) e
-where e.r in (1,5, 10, 12);
+where e.r =(select count(*) from emp);
+```
+Questions
+Q1
+
+```sql
+select * 
+from emp
+rownum =1;
+```
+Q2
+```sql
+select * 
+from emp
+rownum <=5;
 ```
 
+Q3
+```sql
+select * 
+from emp
+rownum <=10;
+```
+Q4
+```sql
+select e.*, rownum r1
+from (select emp.*, rownum r
+        from emp ) e
+where e.r in (2, 4, 12);
+```
+
+Q5
 ```sql
 select e.*, rownum r1
 from (select emp.*, rownum r
@@ -65,11 +97,3 @@ from (select emp.*, rownum r
         order by r desc) e
 where rownum=1;
 ```
-
-```sql
-select e.*, rownum r1
-from (select emp.*, rownum r
-        from emp ) e
-where e.r =(select count(*) from emp);
-  
-
