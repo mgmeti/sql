@@ -1,10 +1,11 @@
 ### Pseudo columns
 These are special types of column which are not physically stored in table.
 
-Used in ranking and identifying unique rows.
-When the tble information is unkown.
-We cannot insert, delete or update pseudo columns.
-if, user wants to see the pseudo columns, explicitly user must and should call the columns in select query.
+UseCases:
+        Used in ranking and identifying unique rows.
+        When the table information is unkown.
+        We cannot insert, delete or update pseudo columns.
+        if, user wants to see the pseudo columns, explicitly user must and should call the columns in select query.
 
 Note: behaves like actual column but not stored in the table.
 
@@ -35,15 +36,6 @@ where sal <=3000 and rownum <=2;
 where  rownum <=2 ;
  ```
 
-Get second row of emp by using rownum.
- ```sql
- select *
- from (select * 
-        from emp 
-        where rownum <= 2 
-        order by rownum desc)
- where rownum=1;
- ```
 
 ```sql
 select e.*, rownum r1
@@ -82,6 +74,16 @@ from emp
 rownum <=10;
 ```
 Q4
+Get second row of emp by using rownum.
+ ```sql
+ select *
+ from (select * 
+        from emp 
+        where rownum <= 2 
+        order by rownum desc)
+ where rownum=1;
+ ```
+ Q5
 ```sql
 select e.*, rownum r1
 from (select emp.*, rownum r
@@ -89,7 +91,7 @@ from (select emp.*, rownum r
 where e.r in (2, 4, 12);
 ```
 
-Q5
+Q6
 ```sql
 select e.*, rownum r1
 from (select emp.*, rownum r
@@ -97,3 +99,30 @@ from (select emp.*, rownum r
         order by r desc) e
 where rownum=1;
 ```
+Q7
+```sql
+select e.*, rownum
+from (select emp.*, rownum r
+        from emp 
+        order by r desc) e
+where rownum <=2;
+```
+
+Q8
+```sql
+select e.*, rownum
+from (select emp.*, rownum r
+        from emp
+        ) e
+where rownum <=3
+union
+select e.*, rownum
+from (select emp.*, rownum r
+        from emp
+        order by r desc
+        ) e
+where rownum <=3
+;
+
+
+
