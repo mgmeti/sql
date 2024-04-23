@@ -93,12 +93,36 @@ where e.r in (2, 4, 12);
 
 Q6
 ```sql
-select e.*, rownum r1
-from (select emp.*, rownum r
-        from emp 
-        order by r desc) e
-where rownum=1;
+select e.*, rownum r1  --(7)
+from  -- (5) refers to e
+(select emp.*, rownum r  --(2)
+        from emp  --(1)
+        order by r desc) e --(3) and aliasing --(4)
+where rownum=1; --(6) takes first row from e
 ```
+table emp  --(1)
+empno | ename
+e1      raj
+e2      ram         --->>> --(2)
+e1      raj                 empno | ename | r
+                            e2      ram     1
+                            e3      ranga   2
+                            e3      ranga   3
+                                    
+                    --->>> --(3) and --(4) aliasing as e
+                                empno | ename | r
+                                e2      ram     3
+                                e3      ranga   2
+                                e3      ranga   1
+                    --->>>--(5)
+                                empno | ename | r |  
+                                e2      ram     3       1
+                    --->>> --(6)
+                            rownum
+                                1    1=1 true 
+                    --->>> --(7)
+                                empno | ename | r |  rownum
+                                e2      ram     3       1
 Q7
 ```sql
 select e.*, rownum
