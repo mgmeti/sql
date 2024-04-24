@@ -7,7 +7,9 @@ UseCases:
         We cannot insert, delete or update pseudo columns.
         if, user wants to see the pseudo columns, explicitly user must and should call the columns in select query.
 
-Note: behaves like actual column but not stored in the table.
+Note: 1. Behaves like actual column but not stored in the table.
+      2. Pseudocolumns typically return a different value for each row.
+
 
 
 #### rownum
@@ -147,6 +149,42 @@ from (select emp.*, rownum r
         ) e
 where rownum <=3
 ;
+```
+
+Q9 
+Get middle record of the employee table
+```sql
+ select *
+ from (select emp.*, rownum r from emp)
+ where r = (select round(count(*)/2) from emp);
+ ```
+Q10
+get middle 3 records from the employee table
+```sql
+select *
+ from (select emp.*, rownum r from emp)
+ where r >= (select round(count(*)/2)-1 from emp) and r <= (select round(count(*)/2)+1 from emp) ;
+```
+Q11
+Get first half records of the employee table
+```sql
+ select *
+ from (select emp.*, rownum r from emp)
+ where r <= (select round(count(*)/2) from emp);
+ ```
+ ```sql
+select emp.*, rownum
+from emp
+where rownum <= (select round(count(*)/2) from emp);
+ ```
+
+ Q12
+Get first half records of the employee table
+```sql
+ select *
+ from (select emp.*, rownum r from emp)
+ where r > (select round(count(*)/2) from emp);
+ ```
 
 
 
