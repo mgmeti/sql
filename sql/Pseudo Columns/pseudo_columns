@@ -273,3 +273,48 @@ from (
                 order by sal desc)e)e1
 where e1.r in (2, 5, 8);
 ```
+
+Q20
+Get second highest salary  employee details in employee table
+```sql
+select *
+from emp
+where sal =(
+select e1.sal
+from (
+        select e.*,rownum r
+        from
+        (
+          select  distinct sal
+                from emp
+                order by sal desc)e)e1
+where e1.r=2) ;
+```
+
+Q21
+Get  5 highest salary in employee table
+```sql
+select e1.*
+from (
+        select e.*,rownum r
+        from
+        (
+          select  *
+                from emp
+                order by sal desc)e)e1
+where e1.r<=5;
+```
+
+Q22
+Get  5 lowest salary in employee table
+```sql
+select e1.*
+from (
+        select e.*,rownum r
+        from
+        (
+          select  *
+                from emp
+                order by sal asc)e)e1
+where e1.r<=5;
+```
