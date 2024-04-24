@@ -186,5 +186,90 @@ Get first half records of the employee table
  where r > (select round(count(*)/2) from emp);
  ```
 
+Q13
+Display first 2 oldest emplyee records(reference to hiredate)
+```sql
+select e.*, rownum r
+from (select *
+        from emp
+        order by hiredate) e
+where rownum <=2;
+```
+```sql
+select *
+from (
+select emp.*, row_number() over (order by hiredate) rn
+from emp
+)
+where rn <=2;
+```
 
+Q14
+Get two latest employee's from employee table
+```sql
+select e.*, rownum r
+from (select *
+        from emp
+        order by hiredate desc) e
+where rownum <=2;
+```
 
+Q15
+Top five employees hired based on empno
+```sql
+select e.*, rownum r
+from (select *
+        from emp
+        order by empno asc) e
+where rownum <=5;
+```
+
+Q16
+Top five employees hired based on empno
+```sql
+select e.*, rownum r
+from (select *
+        from emp
+        order by empno desc) e
+where rownum <=5;
+```
+Q17
+Get second highest salary in employee table
+```sql
+select e1.sal
+from (
+        select e.*,rownum r
+        from
+        (
+          select distinct sal
+                from emp
+                order by sal desc)e)e1
+where e1.r=2;
+```
+Q18
+Get second lowest salary in employee table
+```sql
+select e1.sal
+from (
+        select e.*,rownum r
+        from
+        (
+          select distinct sal
+                from emp
+                order by sal asc)e)e1
+where e1.r=2;
+```
+
+Q19
+Get 2nd, 5th, and 8th highest salary in employee table
+```sql
+select e1.sal
+from (
+        select e.*,rownum r
+        from
+        (
+          select distinct sal
+                from emp
+                order by sal desc)e)e1
+where e1.r in (2, 5, 8);
+```
