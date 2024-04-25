@@ -357,7 +357,150 @@ A5
 ```sql
 select * 
 from emp
-where hiredate >= '01-jan-2023';
+where hiredate >= '01-jan-2023'
 rownum <=10;
 ```
+
+
+#### rowid
+For each row in the database, the ROWID pseudocolumn returns the address of the row.
+
+Physical address of records involves:
+The data object number of the object -- 6
+The data block in the data file in which the rows resides -- 3
+The position of the row in the data block (first row is 0) --6
+The row number --3
+
+rowid is static
+rowid may change, if and only the row is deleted and then inserted.
+rowid can be used for fetching the record in fastest way.
+rowid can be used in select and where clause.
+rowid helps in deleting the duplicate records.
+rowid is generated when the record is inserted.
+
+Q1
+Display the details the employees with row id's.
+```sql
+select emp.*, rowid address
+from emp;
+```
+Q2
+Last employee record in given table
+ ```sql
+ select e1.*
+ from emp e1
+ where 1 = (select count(e2.rowid)
+                from emp e2
+                where e1.rowid<=e2.rowid);
+```
+(OR)
+```sql
+select * 
+from emp
+where rowid = (select max(rowid)
+                from emp
+                )
+;
+```
+Q3
+First employee record in given table
+ ```sql
+ select e1.*
+ from emp e1
+ where 1 = (select count(e2.rowid)
+                from emp e2
+                where e1.rowid >=e2.rowid);
+```
+(OR)
+```sql
+select * 
+from emp
+where rowid = (select min(rowid)
+                from emp
+                )
+;
+```
+Q4
+First 2 employee record in given table
+ ```sql
+ select e1.*
+ from emp e1
+ where  (select count(e2.rowid)
+                from emp e2
+                where e1.rowid>=e2.rowid) in (1, 2)
+;
+```
+Q5
+Last 2 employee record in given table
+ ```sql
+ select e1.*
+ from emp e1
+ where  (select count(e2.rowid)
+                from emp e2
+                where e1.rowid<=e2.rowid) in (1, 2)
+;
+```
+
+Q6
+First 2 employee record in given table
+ ```sql
+ select e1.*
+ from emp e1
+ where  (select count(e2.rowid)
+                from emp e2
+                where e1.rowid>=e2.rowid) in (1, 4, 10)
+;
+```
+Q7
+First 2 employee record in given table
+ ```sql
+ select e1.*
+ from emp e1
+ where  (select count(e2.rowid)
+                from emp e2
+                where e1.rowid<=e2.rowid) in (2, 7)
+;
+```
+
+Q8 
+To delete duplicate row's
+```sql
+delete from emp
+where  rowid not in (select max(rowid)
+                        from emp
+                        group by empno, ename, sal
+);
+```
+Q9
+Display the duplicate rows present in table
+```sql
+select *
+from emp
+where  rowid not in (select max(rowid)
+                        from emp
+                        group by empno, ename, sal
+);
+```
+
+Q10
+```sql
+update emp set sal=8000 where rowid ='AAAMfPAAEAAAAAgAAD';
+```
+
+Q11
+```sql
+delete
+from emp
+where rowid='AAAMfPAAEAAAAAgAAE';
+```
+Q12
+```sql
+select e.ename, d.dname
+from emp e
+join dept d
+on d.deptno=e.deptno
+and d.rowid ='AAAMfNAAEAAAAAQAAD'
+;
+```
+
 
