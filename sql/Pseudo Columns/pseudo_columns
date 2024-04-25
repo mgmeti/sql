@@ -502,5 +502,3 @@ on d.deptno=e.deptno
 and d.rowid ='AAAMfNAAEAAAAAQAAD'
 ;
 ```
-
-
