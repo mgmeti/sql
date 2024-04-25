@@ -318,3 +318,46 @@ from (
                 order by sal asc)e)e1
 where e1.r<=5;
 ```
+
+Assigment:
+A1 first 5 employees from employee table, ordered by hiredate.
+```sql
+select *
+from (select emp.*, row_number() over (order by hiredate) rn
+        from emp)
+where rn <=5;
+```
+
+A2 top 10 highest paid employees in emp table
+
+```sql
+select *
+from (select emp.*, row_number() over (order by sal desc) rn
+        from emp)
+where rn <=10;
+```
+
+A3 Find the oldest 3 employees in the emp table.
+```sql
+select *
+from (select emp.*, row_number() over (order by hiredate) rn
+        from emp)
+where rn <=3;
+```
+
+A4 employee details who is earning  lowest salary.
+```sql
+select *
+from (select emp.*, row_number() over (order by sal asc) rn
+        from emp)
+where rn <=1;
+```
+
+A5 
+```sql
+select * 
+from emp
+where hiredate >= '01-jan-2023';
+rownum <=10;
+```
+
