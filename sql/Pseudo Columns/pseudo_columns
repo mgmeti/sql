@@ -499,6 +499,6 @@ select e.ename, d.dname
 from emp e
 join dept d
 on d.deptno=e.deptno
-and d.rowid ='AAAMfNAAEAAAAAQAAD'
+where d.rowid ='AAAMfNAAEAAAAAQAAB'
 ;
 ```
