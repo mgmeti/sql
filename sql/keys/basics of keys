@@ -36,6 +36,14 @@ sid || regid || email any one of it can be made it as primary key.
 
 A primary key is a specific super key set of attributes that is picked to serve as the unique identifier for rows of a table. 
 
+            Every table must have one or more fields designated as the primary key. 
+            This designation occurs at the time that the table is created, and cannot be changed after the fact. 
+            A table's primary key uniquely identifies every row in the table. 
+            In the simplest case, it is used to retrieve a specific row so that it can be examined and/or modified.
+
+
+
+
 #### Alternate keys
 The keys other than primary key in candidate keys are called as alternate keys.
 
@@ -47,8 +55,8 @@ It is used to build a relation between one table to another table.
 
 #### composite key
 It is combination of two or more attibute which uniquely identify records.
-
-
-
-
  
+You can use multiple fields for your primary key, which is termed as a composite key.
+
+The composite keys are useful in cases where the keys conjointly help in identifying a unique row.
+
