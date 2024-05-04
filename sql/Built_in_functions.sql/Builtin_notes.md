@@ -48,8 +48,8 @@ D
 X
 
 # UDF -user defined function
---Declaration starts
 ```sql
+--Declaration starts
 create or replace function sample(v1 number, v2 number)
  return number
  is
