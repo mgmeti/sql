@@ -1,13 +1,11 @@
 ### JOINS
 Define:
-    Joins are used to combine rows of two or more tables using related column.
-
-    Joins are used retrieve or fetch fro multiple tables simulatneaously.
+    A join is query that combines rows from two or more tables, views, or materialized views.
 
 Joins are used to combine data from multiple tables to form a single result set.
 
     1. we use join condition to join the rows.
-    2. Join condtiotion is written using related column(FK).
+    2. Join condition is written using related column(FK).
     3. If the join conditon is written is on  WHERE clause is known as ORACLE syntax.
     4. If the join conditon is written is on ON clause is known as ANCI syntax.
     5. ANSI SYNTAX -> Join condition with ON clause.
@@ -21,11 +19,11 @@ ON and WHERE clauses are used to establish relationa between tables.
 
 
 #### Types Of Joins
-    1. [INNER] JOIN (EQUI JOIN)
+    1. [INNER] JOIN 
     2. OUTER JOIN 
-            a. LEFT
-            b. RIGHT
-            c. FULL
+            a. LEFT JOIN
+            b. RIGHT JOIN
+            c. FULL JOIN
     3. CROSS JOIN (CARTESIAN JOIN)
     4. NATURAL JOIN
     5. SELF JOIN
@@ -35,6 +33,8 @@ ON and WHERE clauses are used to establish relationa between tables.
 
 #### [INNER] JOIN
 An INNER JOIN combines data from two tables where there is a match on the joining column(s) in both tables.
+
+Inner join is a query used to get rows from two or more table when join conditons are TRUE.
 
 It gives only matching records from multiplet tables.
 
@@ -61,7 +61,8 @@ NOTE: null columns can not be compared assignment operator.
 
 select ename, dname, d.deptno
 from emp e
-    join dept d    on e.deptno=d.deptno
+    join dept d    
+    on e.deptno=d.deptno
 ;
 
 Q1.Display ename with their dname
@@ -69,7 +70,8 @@ Q1.Display ename with their dname
 ```sql 
 select e.ename, d.dname
     from emp e
-        join  dept d on e.deptno=d.deptno
+        join  dept d 
+            on e.deptno=d.deptno
     ; 
 ```
 
@@ -78,7 +80,8 @@ ANCI SYNTAX:
 ```sql
 select *
   from emp e
-        join  dept d on e.deptno=d.deptno
+        join  dept d 
+            on e.deptno=d.deptno
     ; 
 ```
 ORACLE SYNTAX:
@@ -201,7 +204,9 @@ A table joining with itself.
 Q1
 ```sql
 select e1.ename ||' works for ' || e2.ename  "Employee and their managers"
-from emp e1  join emp e2 on e1.mgr=e2.empno;
+from emp e1  
+join emp e2 
+on e1.mgr=e2.empno;
 ```
 
 
@@ -209,21 +214,27 @@ from emp e1  join emp e2 on e1.mgr=e2.empno;
 Q2
 ```sql
 select e1.ename emp_name, e1.deptno, e2.ename manager
-from emp e1  join emp e2 on e1.mgr=e2.empno
+from emp e1  
+join emp e2 
+on e1.mgr=e2.empno
 where e1.deptno in (10, 20);
 ```
 
 Q3
 ```sql
 select e1.ename employee, e2.ename manager, e2.job
-from emp e1   join emp e2 on e1.mgr=e2.empno
+from emp e1   
+join emp e2 
+on e1.mgr=e2.empno
 where e2.job='MANAGER';
 ```
 
 Q4
 ```sql
 select e1.ename employee, e1.hiredate emp_hiredate,  e2.ename manager, e2.hiredate manager_hiredate
-from emp e1   join emp e2 on e1.mgr=e2.empno
+from emp e1   
+join emp e2 
+on e1.mgr=e2.empno
 where e1.hiredate < e2.hiredate;
 ```
 
@@ -231,40 +242,53 @@ where e1.hiredate < e2.hiredate;
 Q5
 ```sql
 select e1.ename emp_name, e1.deptno, e2.ename manager, e2.deptno
-from emp e1  join emp e2 on e1.mgr=e2.empno
+from emp e1  
+join emp e2 
+on e1.mgr=e2.empno
 where e2.deptno in (30, 50);
 ```
 Q6
 ```sql
 select e1.ename emp_name, e1.job, e2.ename manager, e2.job
-from emp e1  join emp e2 on e1.mgr=e2.empno
+from emp e1  
+join emp e2 
+on e1.mgr=e2.empno
 where e1.job=e2.job;
 ```
 
 Q7
 ```sql
 select e1.ename employee, e1.sal emp_sal,  e2.ename manager
-from emp e1   join emp e2 on e1.mgr=e2.empno
+from emp e1   
+join emp e2 
+on e1.mgr=e2.empno
 where substr(e2.ename, -1, 1) in ('A', 'E', 'I', 'O','U');
 ```
 Q8
 ```sql
 select e1.ename employee, e1.job, e1.sal, e1.deptno, e1.comm,
          e2.ename manager, e2.job, e2.sal, e2.deptno. e2.comm
-from emp e1  join emp e2 on e1.mgr=e2.empno
-where e1.comm > e2.comm and e1.deptno=10 and e2.job='MANAGER' and e1.hiredate < e2.hiredate;
+from emp e1  
+join emp e2 
+on e1.mgr=e2.empno
+where e1.comm > e2.comm 
+    and e1.deptno=10 
+        and e2.job='MANAGER' 
+            and e1.hiredate < e2.hiredate;
 ```
  
 Q9
-employees and managers, and managers managers
+employees and manager's, and manager's manager's
+ANCI Syntax
 ```sql
 select e.ename, m1.ename, m2.ename
-from emp e join emp m1
+from emp e 
+join emp m1
 on e.mgr=m1.empno
 join emp m2
 on m1.mgr=m2.empno;
 ```
-Q9
+Oracle Syntax
 ```sql
 select e.ename,  m2.ename
 from emp e, emp m1, emp m2
@@ -272,10 +296,11 @@ where e.mgr=m1.empno and m1.mgr=m2.empno;
 ```
 
 Q10
-employees and managers, and managers managers, and managers managers manager.
+employees and manager's, and manager's manager's, and manager's manager's manager.
 ```sql
 select e.ename,  m3.ename, 
-from emp e join emp m1
+from emp e 
+join emp m1
 on e.mgr=m1.empno
 join emp m2
 on m1.mgr=m2.empno
@@ -378,7 +403,7 @@ from emp e
 join emp m
 on m.empno = e.mgr
 join emp e1
-on e.sal > e1.sal and e1.ename ='SMITH';
+on e.sal > e1.sal and e1.ename ='ALLEN';
 ```
 
 ```sql
@@ -423,8 +448,8 @@ from emp
 join dept
 on emp.deptno=dept.deptno
 and  (emp.deptno,emp.sal) in (select deptno, max(sal)
-from emp
-group by deptno)
+                                        from emp
+                                        group by deptno)
 order by dname asc;
 ```
 
@@ -434,8 +459,8 @@ from emp
 join dept
 on emp.deptno=dept.deptno
 and  (emp.deptno,emp.hiredate) in (select deptno, max(hiredate)
-from emp
-group by deptno)
+                                                from emp
+                                                group by deptno)
 order by dname asc;
 ```
 
