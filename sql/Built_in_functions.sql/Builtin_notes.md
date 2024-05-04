@@ -25,11 +25,13 @@ types of SRF():
 
 ## Charcter Function  
 Source: https://docs.oracle.com/cd/B13789_01/server.101/b10759/functions001.htm 
-1. Character Functions Returning Character Values - that return character values return values of the same datatype as the input argument.
+1. Character Functions Returning Character Values: 
+    Return values of the same datatype as the input argument.
 
 
 
-2. Character Functions Returning Number Values - that return number values can take as their argument any character datatype.
+2. Character Functions Returning Number Values 
+   Return number values can take as their argument any character datatype.
 
 
 
@@ -37,7 +39,9 @@ Source: https://docs.oracle.com/cd/B13789_01/server.101/b10759/functions001.htm
 dual - a dummy table with one row and one column;
 dual table is dummy table present inside the database with 1 row and 1 column and by default it contains value X with varchar2(1) type.
 If user want to perform operation based on his own data, he can use of dummy table in his sql statements.
+```sql
 select * from dual;
+```
 
 D   
 -
@@ -45,6 +49,7 @@ X
 
 # UDF -user defined function
 --Declaration starts
+```sql
 create or replace function sample(v1 number, v2 number)
  return number
  is
@@ -55,9 +60,11 @@ create or replace function sample(v1 number, v2 number)
  v3 := v1 +v2;
  return v3;
  end;
+ ```
 --Logic ends
-
+```sql
 select sample(10, 15) as total from dual;
+```
 
 TOTAL
 -----
