@@ -52,6 +52,7 @@ where hiredate > '31-DEC-80' and hiredate <(
 
 
 --Q10
+--Get employees who have salary more than 'miller'
 select ename
 from scott.emp
 where sal > (select sal 
@@ -59,6 +60,7 @@ where sal > (select sal
                 where ename = 'MILLER');
 
 --Q11
+-- Get name, annual salary and  designation of all employee's who have annual salary more than 'smith'
 select ename, sal *12 "AnnualSal", job "Designation"
 from scott.emp
 where (sal*12) > (select sal * 12
@@ -66,12 +68,14 @@ where (sal*12) > (select sal * 12
                     where ename='SMITH');
 
 --Q12
+-- Get employee's who have salary more than average salary of company
 select ename
 from scott.emp
 where sal > (select round(avg(sal))
                 from scott.emp);
 
 --Q13
+-- Get names of employee's whose salary is not same as 'SCOTT'
 select ename
 from scott.emp
 where sal != (select sal 
@@ -79,12 +83,14 @@ where sal != (select sal
                 where ename = 'SCOTT');
 
 --Q14
+-- Get names of employee's whose salary is greater than or equal to "ALLEN" salary
 select ename
 from scott.emp
 where sal >= (select sal 
                 from scott.emp 
                 where ename = 'ALLEN');
 --Q15
+-- Get names of employee's whose salary is less than or equal to "ALLEN" salary
 select ename
 from scott.emp
 where sal <= (select sal 
@@ -92,12 +98,14 @@ where sal <= (select sal
                 where ename = 'MILLER');
 
 --Q16
+-- Get details of employee's whose salary not equal to max salary of emp table
 select *
 from scott.emp
 where sal != (select max(sal)
                 from scott.emp);
 
 --Q17
+-- Get employees who are earning more than average salary of deptno 10
 select *
 from scott.emp
 where sal > (select round(avg(sal))
@@ -105,6 +113,7 @@ where sal > (select round(avg(sal))
                 where deptno=10);
 
 --Q18
+-- Get employees who are earning less than average salary of deptno 30
 select ename, sal
 from scott.emp
 where sal < (select min(sal)
@@ -117,12 +126,13 @@ from scott.emp
 where sal = (select round(avg(sal))
                 from scott.emp);
 
---Q
+--Q20
 select ename
 from scott.emp
 where sal > (select sal from scott.emp where ename='MILLER')
         and sal <  (select sal from scott.emp where ename='ALLEN');
 
+--Q21
 select deptno, round(avg(sal))
 from scott.emp
 group by deptno
@@ -200,6 +210,7 @@ where deptno in ( select deptno
                         deptno in (10, 30));
 
 --Q10
+-- Get employees who are earning same salary and in same department
 select * 
 from scott.emp 
 where (sal, deptno) in (
