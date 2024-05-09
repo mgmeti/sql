@@ -18,7 +18,7 @@ select * from toys
 where  volume_of_wood <> null;
 
 select * from toys
-where  volume_of_wood =null;
+where  volume_of_wood = null;
 --Above queries will give no records
 --Null is neither equal to nor not equal to anything. 
 
