@@ -248,8 +248,9 @@ select *
         select max(hiredate)
         from scott.emp);
 
---case3 finding maximum and minimum
+
 --Q1
+-- Who is getting maximum salary
 select *
     from scott.emp
     where sal = (
@@ -257,6 +258,7 @@ select *
         from scott.emp);
 
 --Q2
+-- Who is getting minimum salary
 select *
     from scott.emp
     where sal = (
@@ -278,6 +280,7 @@ select *
         from scott.emp);
 
 --Q5
+-- Get second maximum salary in the emp table
 select max(sal)
     from scott.emp
     where sal < (
@@ -285,16 +288,19 @@ select max(sal)
         from scott.emp);
 
 --Q6
+-- Get detials of the employee's who are  earning second maximum salary
 select *
 from scott.emp
 where sal = (
         select max(sal)
-                from scott.emp
-                where sal < (
-                select max(sal)
-                from scott.emp)
-                );
+        from scott.emp
+        where sal < (
+                        select max(sal)
+                        from scott.emp)
+                        )
+;
 --Q7
+-- Get 4rth minimum salary in emp table
 select min(sal)
     from scott.emp
     where sal > (
@@ -307,6 +313,7 @@ select min(sal)
                         select min(sal)
                         from scott.emp)));
 --Q8
+-- Get detials of the employee's who are  earning 4rth minimum salary
 select *
 from scott.emp
 where sal =(
@@ -340,13 +347,13 @@ select *
 from scott.emp
 where hiredate in (
         select max(hiredate)
-                from scott.emp
-                where hiredate < (
-                select max(hiredate)
-                from scott.emp)
-                );
+        from scott.emp
+        where hiredate < (
+                        select max(hiredate)
+                        from scott.emp)
+                                );
 
---Q13
+--Q11
 select *
 from scott.emp
 where sal > (select sal 
@@ -358,7 +365,7 @@ where sal > (select sal
                 where ename ='KING'
         );
 
---Q14
+--Q12
 select ename, comm, deptno
 from scott.emp
 where comm is not null
@@ -366,7 +373,6 @@ where comm is not null
                 select deptno 
                 from scott.emp
                 where ename ='ALLEN'
-
         )  
         and hiredate <(
                 select hiredate 
@@ -382,7 +388,6 @@ where comm is not null
                 select deptno 
                 from scott.emp
                 where ename ='JAMES'
-
         )  
         and hiredate > (
                 select hiredate 
@@ -404,13 +409,15 @@ where comm is not null
 --subqueries with special operators.
 --ANY , ALL
 /*
+ANY
 It is a special operator used along with relational operators. <, <=, >, >=, =, <>,
 To comapare the values present at the RHS 
+
 ANY operator return true if one of the values at RHS have satsfied the condition.
 
 ALL
 It is a special operator used along with relational operators.
-ALL operator becomes TRUE if the all the values at the RHS have satsfied the coonditon.
+ALL operator becomes TRUE if the all the values at the RHS have satsfied the conditon.
 
 */
 --Q1
@@ -424,7 +431,7 @@ where sal < ALL (
                 );
 --alternative
 select ename
-from ecott.emp
+from scott.emp
 where sal < (select min(sal)
                 from scott.emp
                 where job='SALESMAN');
@@ -449,13 +456,13 @@ where sal < (select max(sal)
 --Q3
 -- employees who earns more than ADAMS
 select ename
-from ecott.emp
-where sal > ALL (select max(sal)
+from scott.emp
+where sal > ALL (select sal
                 from scott.emp
                 where ename='ADAMS');
 --alternative
 select ename
-from ecott.emp
+from scott.emp
 where sal > (select max(sal)
                 from scott.emp
                 where ename='ADAMS');
@@ -489,7 +496,7 @@ where sal > ANY (
                 );
 --alternative
 select ename
-from ecott.emp
+from scott.emp
 where sal > (select min(sal)
                 from scott.emp
                 where job='SALESMAN');
@@ -500,7 +507,7 @@ from scott.emp
 where hiredate > ALL (
                         select hiredate
                         from scott.emp
-                        where job = 'CLERKS'
+                        where job = 'CLERK'
                 );
 --alternative
 select ename
@@ -508,7 +515,7 @@ from scott.emp
 where hiredate >  (
                         select max(hiredate)
                         from scott.emp
-                        where job = 'CLERKS'
+                        where job = 'CLERK'
                 );
 --Q7
 
@@ -523,7 +530,7 @@ where sal < ANY (
                 );
 --alternative
 select ename, sal
-from ecott.emp
+from scott.emp
 where sal < (select max(sal)
                 from scott.emp
                 where job='MANAGER');
@@ -552,26 +559,25 @@ where hiredate > ALL (
                         select hiredate
                         from scott.emp
                         where job = 'MANAGER'
-                ) and
-                sal > ALL (
-                        
+                ) 
+                and sal > ALL (                        
                         select sal
                         from scott.emp
-                        where job = 'CLERKS'
+                        where job = 'CLERK'
                 );
                 
 --alternative
 select ename
 from scott.emp
-where hiredate <(
-                        select min(hiredate)
+where hiredate > (
+                        select max(hiredate)
                         from scott.emp
                         where job = 'MANAGER'
                 ) and
                 sal >  (
                         select max(sal)
                         from scott.emp
-                        where job = 'CLERKS'
+                        where job = 'CLERK'
                 );
 --Q10
 select ename, job, hiredate
@@ -591,7 +597,7 @@ where hiredate > ALL (
                         select hiredate
                         from scott.emp
                         where deptno = 10
-                )
+                );
 
 --Q12
 --ename, sal if employee earning more than avg sal of each department
@@ -610,14 +616,13 @@ group by deptno
 having round(avg(sal), 2) >(
         select round(avg(sal), 2)
         from scott.emp
-
 );
 
 --Q14
 select deptno, count(*)
 from scott.emp
 group by deptno
-having count(*) > (
+having count(*) = (
         select max(count(*))
         from scott.emp
         group by deptno
@@ -625,7 +630,9 @@ having count(*) > (
 
 
 --Q15
-update scott.emp set comm=(select round(avg(comm)) from scott.emp)
+update scott.emp 
+set comm = (    select round(avg(comm)) 
+                from scott.emp)
 where comm is not null;
 
 
@@ -653,7 +660,7 @@ WHERE
 
 --Q1
 -- # of employees working in dallas
-select deptno, count(*) as no_of_employees
+select  count(*) as no_of_employees
 from scott.emp
 where deptno = (
         select deptno
@@ -662,16 +669,16 @@ where deptno = (
 );
 
 --Q2
-select deptno, max(sal) as highest_salary
+select  max(sal) as highest_salary
 from scott.emp
 where deptno = (
         select deptno
         from scott.dept
-        where loc ='NEWYORK'
+        where loc ='NEW YORK'
 );
 
 --Q3
-select deptno, sum(sal) as total_Salary
+select  sum(sal) as total_Salary
 from scott.emp
 where deptno = (
         select deptno
@@ -684,11 +691,15 @@ select dname, loc
 from scott.dept
 where deptno in (select deptno
                 from scott.emp
-                where sal = (select sal from scott.emp where ename='ALLEN')
-                        and sal < (select sal from scott.emp where ename='KING'));
+                where sal = (select sal 
+                                from scott.emp 
+                                where ename='ALLEN')
+                        and sal < (select sal 
+                                from scott.emp 
+                                where ename='KING'));
 
 --Q5
-select ename
+select deptno, ename
 from scott.emp
 where (sal, deptno) in
         (select max(sal), deptno
@@ -714,18 +725,18 @@ where (sal, job) = ANY
 --Q8
 select *
 from scott.emp
-where sal >ANY
-        (select round(avg(sal))
-        from scott.emp
-        group by job);
+where sal > ANY
+                (select round(avg(sal))
+                from scott.emp
+                group by job);
 
 --Q9
 select ename, sal
 from scott.emp
 where sal >ALL
-        (select round(avg(sal))
-        from scott.emp
-        group by deptno);
+                (select round(avg(sal))
+                from scott.emp
+                group by deptno);
 
 --Q10
 select *
@@ -733,7 +744,7 @@ from scott.dept
 where deptno in (
         select deptno
         from scott.emp
-        where (sal, deptno) in (select sal , deptno
+        where (sal, deptno) in (select max(sal , deptno
                                 from scott.emp
                                 group by deptno
                                 having count(*)>1)
@@ -779,7 +790,8 @@ where deptno = (
 
 --Q14
 update scott.emp 
-set comm = (select round(avg(comm)) from scott.emp) 
+set comm = (select round(avg(comm)) 
+                from scott.emp) 
 where comm is null;
 
 --Q15
@@ -795,7 +807,7 @@ where deptno in (
         select deptno
         from scott.emp
         group by deptno
-        having round(avg) > (select round(avg(sal))
+        having round(avg(sal)) > (select round(avg(sal))
                                 from scott.emp
        ));
 
@@ -819,7 +831,6 @@ where (sal, deptno) in (
 select deptno, round(avg(sal))
 from scott.emp
 where  (sal, deptno) not in (
-
                 select max(sal), deptno
                 from scott.emp
                 where (sal, deptno) not in (
@@ -903,10 +914,10 @@ where e1.mgr = (
         where e2.ename = 'JONES'
 );
 
---TO display empno, ename,mgr, sal of  employees working under 'scott'
+--To display empno, ename,mgr, sal of  employees working under 'scott'
 select empno, ename, mgr, sal
 from scott.emp e1
-where e1.mgr =ANY (
+where e1.mgr = (
         select empno
         from scott.emp e2
         where e2.ename = 'SCOTT'
@@ -921,9 +932,10 @@ from scott.emp
 where empno in (select mgr
                 from scott.emp)
 
+-- Employees who doesn't have manager
 select *
 from scott.emp
-where nvL(mgr, 0) = 0;
+where nvl(mgr, 0) = 0;
 
 
 select *
@@ -979,7 +991,10 @@ where empno in (
                 select mgr 
                 from scott.emp
                 where ename='ADAMS'
-) and deptno in (30, 20) and job in ('ANALYST', 'MANAGER') and length(ename)=5;
+) 
+and deptno in (30, 20) 
+and job in ('ANALYST', 'MANAGER') 
+and length(ename)=5;
 
 --Q6
 --allen's and martin's manager name
@@ -1136,7 +1151,7 @@ where mgr in (
 
 s
 --Q
---manager's who is alsp employees to the company
+--manager's who is also employees to the company
 select ename
 from emp
 where empno in (select mgr
