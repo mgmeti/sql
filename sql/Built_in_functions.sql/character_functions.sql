@@ -1,4 +1,31 @@
 --LOWER(char) - Used to convert given data intoo lowercase.
+-- UPPER(char) -> UPPER returns char, with all letters uppercase. (returns same datatype as given)
+--INITCAP(char) - INITCAP returns char, with the first letter of each word in uppercase, all other letters in lowercase.
+--LENGTH(char) --> The LENGTH functions return the length of char(number). 
+--REVERSE(cahr type) --> used to reverse the given input
+--CONCAT(chartype1, chartype2) --> Used to merge given inputs
+--Note concat operator (||) can be used in select clause.
+--TRIM() --> used to remove specific/particular character from the given string.
+--syntax: trim(leading/trailing/both 'char' from string)
+--REPLACE() --> REPLACE returns char with every occurrence of search_string replaced with replacement_string. 
+--syntax: replace(main_string, search_String, replace_String);
+--Note: if you do not specify the replace_string, then search string is removed from main(source) string.
+--REPLACE lets you substitute one string for another 
+--as well as to remove character strings.
+
+--SUBSTR() -- Used to extract the part of the string from given string.
+--syntax: substr(main string, starting index number, number of charcaters)
+
+--instr :- used display the position of the character
+--instr(arg1, aeg2, arg3, arg4) -- returns index value of given serch conditions
+--here arg1 --> main string
+-- arg2 --> search string
+-- arg3 --> start index value
+-- arg4 --> which occurance of search string you want
+
+
+
+
 SELECT LOWER('MR. SCOTT MCMILLAN') "Lowercase"
    FROM DUAL;
 
@@ -90,7 +117,7 @@ from dual;
 --CONCAT(chartype1, chartype2) --> Used to merge given inputs
 --Note concat operator (||) can be used in select clause.
 
-select concat('Hi', ename)
+select concat('Hi ', ename)
 from emp;
 
 select 'Hi ' || ename ||' how are you?'
@@ -113,7 +140,7 @@ from emp;
 
 --Note: Note that for both CHAR and VARCHAR2 columns, the trailing blanks are preserved.
 
---TRIM() --> used to remove specific/particular cahracter from the given string.
+--TRIM() --> used to remove specific/particular character from the given string.
 --syntax: trim(leading/trailing/both 'char' from string)
 
 --Remove leading 'A' from ename.
@@ -189,7 +216,7 @@ from dual;
 
 
 --Q1
-select name, replace(name, 'R', 'D') from emp;
+select ename, replace(ename, 'R', 'D') from emp;
 
 --Q2
 select ename, length(ename) -length(replace(ename, 'A')) "Number of A's"
@@ -235,7 +262,7 @@ DMS
 select translate('ADAMS', 'AEIOU', '     ') "new name" from dual;
 
 
-SQL> select length(translate('ADAMS', ' AEIOU', ' ')) "# of consonants" from  dual;
+ select length(translate('ADAMS', ' AEIOU', ' ')) "# of consonants" from  dual;
 
 # of consonants
 ---------------

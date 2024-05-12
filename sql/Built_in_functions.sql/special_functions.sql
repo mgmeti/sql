@@ -8,6 +8,7 @@ used to overcome the drawback null values.
 --nvl(arg1, arg2)   
 If arg1 is null, then NVL returns arg2. If arg1 is not null, then NVL returns arg1. 
 
+note: both arguments should be same type
 */
 select nvl(null, 1) from dual;
 -- 1
@@ -21,6 +22,7 @@ select nvl(null, 'A') from dual;
 -- get commission column with commission not applicable for the employee who do not get commission.
 select ename, sal, nvl(to_char(comm), 'Not Applicable') "COMMISSION"
 from emp;
+
 
 --Q1
 select ename, sal, sal + nvl(comm, 0) as total_salary
