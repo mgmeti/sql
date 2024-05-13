@@ -45,6 +45,42 @@ select ename from emp
 union
 select dname from dept;
 ```
+```sql
+select deptno from emp
+union
+select deptno from dept;
+```
+    DEPTNO
+----------
+        10
+        20
+        30
+        40
+```sql
+select deptno from emp
+union all
+select deptno from dept;
+```
+   DEPTNO
+---------
+       20
+       30
+       30
+       20
+       30
+       30
+       10
+       20
+       10
+       30
+       20
+       30
+       20
+       10
+       10
+       20
+       30
+       40
 
 ```sql
 select ename from emp
@@ -59,11 +95,33 @@ select dname from dept;
 ```
 
 ```sql
+select deptno from emp
+intersect
+select deptno from dept;
+```
+    DEPTNO
+----------
+        10
+        20
+        30
+
+```sql
 select ename from emp
 minus
 select dname from dept;
 ```
+```sql
+select deptno from emp
+minus
+select deptno from dept;
+```
+no rows selected
 
+```sql
+select deptno from dept
+minus
+select deptno from emp;
+```
 
 ```sql
 select empno from emp
@@ -77,7 +135,7 @@ select empno from emp
 union all
 select mgr from emp;
 ```
-Note: Results set will notbe ordered and it will have duplicates.
+Note: Results set will not be ordered and it will have duplicates.
 
 ```sql
 select empno from emp

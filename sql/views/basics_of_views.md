@@ -16,10 +16,10 @@ Note: When you give create or replace, it overrides the view which is already pr
 
 there are two types of views:
         1. Simple view
-        2. Comple view
+        2. Complex view
 
 Simple View: 
-    if we create a view by using one or more han one table, and we can perform DML operation, that view will called as simple view.
+    if we create a view by using one or more than one table, and we can perform DML operation, that view will called as simple view.
 
 --> No group functions involved in simple view.
 --> Simple view will not contain distinct keyword or pseudocolumns.
@@ -43,7 +43,7 @@ Advantages of views:
 What is materialized view: 
 --> It is a database object that stores query output.
 --> It cannot be refereshed automatically like a normal view, instead materialized view is upadated manually.
---> Materialized view responds faster than view as the materialized view is precomputed.
+--> Materialized view responds faster than view as the materialized view is pre-computed.
 --> Materialized view utilizes the memory space as it is stored on the disk whereas, the view is just a display hence it is not require memory space.
 
 Syntax to create a Materialized View(user should have permission for the same):

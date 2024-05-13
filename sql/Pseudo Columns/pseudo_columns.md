@@ -21,7 +21,7 @@ it starts from 1 and increment by 1.
     it is dynamic.
     it is unique.
     can be used in select and where clause.
-    rownum might change(dynamic) whenwe use order byclause in query.
+    rownum might change(dynamic) when we use order by clause in query.
 
 ```sql
 select emp.*, rownum
@@ -60,20 +60,20 @@ Q1
 ```sql
 select * 
 from emp
-rownum =1;
+where rownum =1;
 ```
 Q2
 ```sql
 select * 
 from emp
-rownum <=5;
+where rownum <=5;
 ```
 
 Q3
 ```sql
 select * 
 from emp
-rownum <=10;
+where rownum <=10;
 ```
 Q4
 Get second row of emp by using rownum.
@@ -155,21 +155,24 @@ Q9
 Get middle record of the employee table
 ```sql
  select *
- from (select emp.*, rownum r from emp)
+ from (select emp.*, rownum r 
+        from emp)
  where r = (select round(count(*)/2) from emp);
  ```
 Q10
 get middle 3 records from the employee table
 ```sql
 select *
- from (select emp.*, rownum r from emp)
+ from (select emp.*, rownum r 
+        from emp)
  where r >= (select round(count(*)/2)-1 from emp) and r <= (select round(count(*)/2)+1 from emp) ;
 ```
 Q11
 Get first half records of the employee table
 ```sql
  select *
- from (select emp.*, rownum r from emp)
+ from (select emp.*, rownum r 
+        from emp)
  where r <= (select round(count(*)/2) from emp);
  ```
  ```sql
@@ -179,7 +182,7 @@ where rownum <= (select round(count(*)/2) from emp);
  ```
 
  Q12
-Get first half records of the employee table
+Get second half records of the employee table
 ```sql
  select *
  from (select emp.*, rownum r from emp)
@@ -465,9 +468,9 @@ First 2 employee record in given table
 Q8 
 To delete duplicate row's
 ```sql
-delete from emp
+delete from emp1
 where  rowid not in (select max(rowid)
-                        from emp
+                        from emp1
                         group by empno, ename, sal
 );
 ```
@@ -475,11 +478,11 @@ Q9
 Display the duplicate rows present in table
 ```sql
 select *
-from emp
-where  rowid not in (select max(rowid)
-                        from emp
-                        group by empno, ename, sal
-);
+from emp1 e
+where  (select count(rowid)
+                        from emp1 e1
+                        where e1.empno = e.empno
+) >= 2;
 ```
 
 Q10
