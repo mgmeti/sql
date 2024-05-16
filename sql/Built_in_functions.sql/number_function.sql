@@ -44,7 +44,7 @@ where mod(length(ename),  2) = 0;
 -- If # of decimals is positive --> left to right starting from '.'
 -- If # of decimals is negative --> right to left starting from '.'
 --if the value is the range of 0 - 4 --> it gives actual integer value
--- for example, to x+1 when x.0 to x.4 is positive 
+-- for example, to x when x.0 to x.4 is positive 
 -- if the value is the range of 5-9 --> it gives next integer
 -- for example, to x+1 when x.5 to x.9 is positive 
 
