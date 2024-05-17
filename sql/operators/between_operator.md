@@ -5,7 +5,9 @@ Hired between year 81 and 85 and  also 87-88
 ```sql
 select *
 from emp
-where hiredate between '01-jan-81' and '31-dec-85' or 
+where hiredate 
+between '01-jan-81' and '31-dec-85' 
+or 
 hiredate between '01-jan-87' and '31-dec-88';
 ```
 13 rows selected.
@@ -22,7 +24,8 @@ Hired between year 80 and 85, except for the year 82
 ```sql
 select *
 from emp
-where hiredate between '01-jan-80' and '31-dec-85' and hiredate not between '01-jan-82' and '31-dec-82';
+where hiredate between '01-jan-80' and '31-dec-85' 
+and hiredate not between '01-jan-82' and '31-dec-82';
 ```
 11 rows selected.
 
@@ -30,7 +33,8 @@ Hired between year 80 and 87, except for the year 81 and 82
 ```sql
 select *
 from emp
-where hiredate between '01-jan-80' and '31-dec-87' and  hiredate not between '01-jan-81' and '31-dec-82';
+where hiredate between '01-jan-80' and '31-dec-87' 
+and  hiredate not between '01-jan-81' and '31-dec-82';
 ```
 3 rows selected.
 
