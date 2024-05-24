@@ -63,3 +63,4 @@ Note:
 ```sql
 print :bind_variable_name;
 ```
+The above statement used to fetch the updated value in the caller from stored procedure.
